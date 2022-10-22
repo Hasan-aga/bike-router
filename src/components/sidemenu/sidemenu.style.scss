@@ -1,8 +1,10 @@
 .sidemenu {
-  background-color: #aa767c;
+  background-color: #353b45;
   padding: 10px 20px;
-  margin: 10px 0;
+  border-radius: 10px;
+  margin: 10px 1px;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+  align-items: flex-start;
 }
