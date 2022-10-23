@@ -20,7 +20,6 @@ const Mapcontainer = () => {
   useEffect(() => {
     const getCoords = async (location: string) => {
       const coords = await getCoordsFromName(location);
-      console.log(coords);
       if (!coords) throw new Error("no coordinates!");
       setCoords(coords);
     };

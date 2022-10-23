@@ -9,7 +9,7 @@ type Props = {
 };
 
 const UpdatedMap = ({ coords }: Props) => {
-  const { point, setPoint } = useContext(pointContext);
+  const { points, setPoints } = useContext(pointContext);
 
   const map = useMap();
   useEffect(() => {
@@ -20,12 +20,15 @@ const UpdatedMap = ({ coords }: Props) => {
   useMapEvents({
     click(e) {
       const coords = e.latlng;
-      setPoint({ type: "start", coords });
-      console.log(coords);
+      points.push({ type: "start", coords });
+      const newPoints = [...points];
+      setPoints(newPoints);
     },
   });
 
-  return <MarkerWithPop position={point.coords} map={map} />;
+  return (
+    <MarkerWithPop position={points[points.length - 1].coords} map={map} />
+  );
 };
 
 export default UpdatedMap;

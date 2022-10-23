@@ -4,12 +4,14 @@ import InfoCard from "../infoCard/infoCard.component";
 import Search from "../search/search.component";
 import "./sidemenu.style.scss";
 const Sidemenu = () => {
-  const { point, setPoint } = useContext(pointContext);
+  const { points } = useContext(pointContext);
 
   return (
     <div className="sidemenu">
       <Search placeholder="Search.." />
-      <InfoCard description={point.coords} title={point.type} />
+      {points.map((point) => (
+        <InfoCard description={point.coords} title={point.type} />
+      ))}
     </div>
   );
 };

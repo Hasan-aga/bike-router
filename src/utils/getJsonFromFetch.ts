@@ -75,7 +75,6 @@ export const getJsonFromFetch = async function (
   name: string
 ): Promise<RootObject> {
   const url = `https://api.geoapify.com/v1/geocode/search?text=${name}&format=json&apiKey=${process.env.REACT_APP_API_KEY}`;
-  console.log(url);
   try {
     const response = await fetch(url);
 

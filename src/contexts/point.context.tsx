@@ -1,20 +1,20 @@
 import { LatLngLiteral } from "leaflet";
-import { type } from "os";
 import { createContext, ReactNode, useState } from "react";
 
-type Point = {
-  type: "start" | "end" | "mid";
+export type PointType = "start" | "end" | "mid";
+export type Point = {
+  type: PointType;
   coords: LatLngLiteral;
 };
 
-type PointContext = {
-  point: Point;
-  setPoint: React.Dispatch<React.SetStateAction<Point>>;
+type Points = {
+  points: Point[];
+  setPoints: React.Dispatch<React.SetStateAction<Point[]>>;
 };
 // creating the actual context with default value
-export const pointContext = createContext<PointContext>({
-  point: { type: "start", coords: { lat: 0, lng: 0 } },
-  setPoint: () => {},
+export const pointContext = createContext<Points>({
+  points: [{ type: "start", coords: { lat: 0, lng: 0 } }],
+  setPoints: () => {},
 });
 
 type Props = {
@@ -23,11 +23,10 @@ type Props = {
 };
 
 export const PointProvider = ({ children }: Props) => {
-  const [point, setPoint] = useState<Point>({
-    type: "start",
-    coords: { lat: 0, lng: 0 },
-  });
-  const value = { point, setPoint };
+  const [points, setPoints] = useState<Point[]>([
+    { type: "end", coords: { lat: 0, lng: 0 } },
+  ]);
+  const value = { points, setPoints };
 
   return (
     <pointContext.Provider value={value}>{children}</pointContext.Provider>
