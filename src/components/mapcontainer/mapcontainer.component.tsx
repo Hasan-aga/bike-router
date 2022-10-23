@@ -1,11 +1,37 @@
 import "./mapcontainer.style.scss";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  MapContainerProps,
+} from "react-leaflet";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { searchContext } from "../../contexts/search.context";
+import { getCoordsFromName } from "../../utils/getCoordsFromName";
+import { LatLngExpression, Map } from "leaflet";
+import UpdatedMap from "./updatedMap";
 
 const Mapcontainer = () => {
+  const { searchValue, setSearchValue } = useContext(searchContext);
+  const [coords, setCoords] = useState([51.505, -0.09]);
+
+  useEffect(() => {
+    const getCoords = async (location: string) => {
+      const coords = await getCoordsFromName(location);
+      console.log(coords);
+      if (!coords) throw new Error("no coordinates!");
+      setCoords(coords);
+    };
+
+    getCoords(searchValue);
+  }, [searchValue]);
+
   return (
     <MapContainer
       className="mapcontainer"
-      center={[51.505, -0.09]}
+      center={coords as LatLngExpression}
       zoom={13}
       scrollWheelZoom={false}
     >
@@ -13,11 +39,12 @@ const Mapcontainer = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
+      <Marker position={coords as LatLngExpression}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
+      <UpdatedMap coords={coords} />
     </MapContainer>
   );
 };
