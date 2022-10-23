@@ -15,18 +15,22 @@ type searchProps = {
 const Search = ({ placeholder }: searchProps) => {
   const { searchValue, setSearchValue } = useContext(searchContext);
 
-  const submitSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+  const submitSearch = (event: ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const value = event.target.searcher.value;
     setSearchValue(value);
   };
 
   return (
-    <input
-      className="searchInput"
-      type="text"
-      placeholder={placeholder}
-      onChange={submitSearch}
-    />
+    <form onSubmit={submitSearch}>
+      <input
+        className="searchInput"
+        type="text"
+        name="searcher"
+        placeholder={placeholder}
+      />
+    </form>
   );
 };
 
