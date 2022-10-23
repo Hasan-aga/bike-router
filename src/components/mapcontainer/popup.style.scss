@@ -1,0 +1,22 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  button {
+    color: #e8ebe4;
+    background-color: #353b45;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: #3e454f;
+    outline: solid 1px #a1a9b5;
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #282c34;
+}
