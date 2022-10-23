@@ -5,6 +5,7 @@
 }
 
 .App {
+  height: 100vh;
   background-color: #282c34;
   height: 100vh;
   padding: 10px 20px;

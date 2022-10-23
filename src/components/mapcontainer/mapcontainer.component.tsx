@@ -15,7 +15,7 @@ import UpdatedMap from "./updatedMap";
 
 const Mapcontainer = () => {
   const { searchValue, setSearchValue } = useContext(searchContext);
-  const [coords, setCoords] = useState([51.505, -0.09]);
+  const [coords, setCoords] = useState([52.3727598, 4.8936041]);
 
   useEffect(() => {
     const getCoords = async (location: string) => {

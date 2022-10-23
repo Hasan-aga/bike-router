@@ -8,7 +8,8 @@ type Props = {
 const UpdatedMap = ({ coords }: Props) => {
   const map = useMap();
   useEffect(() => {
-    map.setView(coords as LatLngExpression);
+    // map.setView(coords as LatLngExpression);
+    map.flyTo(coords as LatLngExpression);
   }, coords);
   return <div></div>;
 };
