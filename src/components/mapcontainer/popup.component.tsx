@@ -10,7 +10,8 @@ type Props = {
 };
 const Popmenu = ({ map, position }: Props) => {
   const popupRef = useRef<LeafletPopup>(null);
-  const { points, setPoints } = useContext(pointContext);
+  const { points, setPoints, startPointExists, setStartPointExists } =
+    useContext(pointContext);
 
   const displayPopup = useCallback(
     (position: LatLngLiteral) => {
@@ -28,23 +29,26 @@ const Popmenu = ({ map, position }: Props) => {
 
   const createPoint = (type: PointType) => {
     const newPoint: Point = { type, coords: position };
-
     const newPoints = [...points];
     newPoints.push(newPoint);
     setPoints(newPoints);
+
+    setStartPointExists(true);
   };
 
   return (
     <Popup ref={popupRef}>
       <div className="popup">
-        <button
-          onClick={() => {
-            createPoint("start");
-          }}
-        >
-          {" "}
-          Set as start
-        </button>
+        {!startPointExists && (
+          <button
+            onClick={() => {
+              createPoint("start");
+            }}
+          >
+            {" "}
+            Set as start
+          </button>
+        )}
         <button
           onClick={() => {
             createPoint("end");

@@ -7,14 +7,18 @@ export type Point = {
   coords: LatLngLiteral;
 };
 
-type Points = {
+type PointsStore = {
   points: Point[];
   setPoints: React.Dispatch<React.SetStateAction<Point[]>>;
+  startPointExists: boolean;
+  setStartPointExists: React.Dispatch<React.SetStateAction<boolean>>;
 };
 // creating the actual context with default value
-export const pointContext = createContext<Points>({
+export const pointContext = createContext<PointsStore>({
   points: [{ type: "temporary", coords: { lat: 0, lng: 0 } }],
   setPoints: () => {},
+  startPointExists: false,
+  setStartPointExists: () => {},
 });
 
 type Props = {
@@ -26,7 +30,14 @@ export const PointProvider = ({ children }: Props) => {
   const [points, setPoints] = useState<Point[]>([
     { type: "temporary", coords: { lat: 0, lng: 0 } },
   ]);
-  const value = { points, setPoints };
+
+  const [startPointExists, setStartPointExists] = useState(false);
+  const value = {
+    points,
+    setPoints,
+    startPointExists,
+    setStartPointExists,
+  };
 
   return (
     <pointContext.Provider value={value}>{children}</pointContext.Provider>
