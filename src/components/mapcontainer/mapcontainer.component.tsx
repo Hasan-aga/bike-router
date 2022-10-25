@@ -1,20 +1,13 @@
 import "./mapcontainer.style.scss";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMap,
-  MapContainerProps,
-} from "react-leaflet";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
+import { useContext, useEffect, useState } from "react";
 import { searchContext } from "../../contexts/search.context";
 import { getCoordsFromName } from "../../utils/getCoordsFromName";
-import { LatLngExpression, Map } from "leaflet";
+import { LatLngExpression } from "leaflet";
 import UpdatedMap from "./updatedMap";
 
 const Mapcontainer = () => {
-  const { searchValue, setSearchValue } = useContext(searchContext);
+  const { searchValue } = useContext(searchContext);
   const [coords, setCoords] = useState([52.3727598, 4.8936041]);
 
   useEffect(() => {
