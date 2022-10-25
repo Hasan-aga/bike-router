@@ -10,7 +10,11 @@ const Sidemenu = () => {
     <div className="sidemenu">
       <Search placeholder="Search.." />
       {points.map((point) => (
-        <InfoCard description={point.coords} title={point.type} />
+        <InfoCard
+          key={point.coords as any as string}
+          description={point.coords}
+          title={point.type}
+        />
       ))}
     </div>
   );

@@ -27,14 +27,10 @@ const Popmenu = ({ map, position }: Props) => {
   }, [position, displayPopup]);
 
   const createPoint = (type: PointType) => {
-    const last = points.at(-1);
-    points.pop();
-    if (!last) return;
-
-    last.type = type;
+    const newPoint: Point = { type, coords: position };
 
     const newPoints = [...points];
-    newPoints.push(last);
+    newPoints.push(newPoint);
     setPoints(newPoints);
   };
 
