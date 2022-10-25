@@ -1,5 +1,6 @@
 import { LatLngLiteral } from "leaflet";
 import { createContext, ReactNode, useState } from "react";
+import { getRoute } from "../utils/getRoute";
 
 export type PointType = "start" | "end" | "mid" | "temporary";
 export type Point = {
@@ -12,6 +13,7 @@ type PointsStore = {
   setPoints: React.Dispatch<React.SetStateAction<Point[]>>;
   startPointExists: boolean;
   setStartPointExists: React.Dispatch<React.SetStateAction<boolean>>;
+  route?: number[];
 };
 // creating the actual context with default value
 export const pointContext = createContext<PointsStore>({
@@ -43,3 +45,9 @@ export const PointProvider = ({ children }: Props) => {
     <pointContext.Provider value={value}>{children}</pointContext.Provider>
   );
 };
+
+const testPoints: LatLngLiteral[] = [
+  { lat: 47.569664, lng: 10.7021002 },
+  { lat: 47.575734, lng: 10.720492 },
+];
+getRoute(testPoints);

@@ -8,8 +8,6 @@ type Props = {
 };
 
 const MarkerWithPop = ({ position, map }: Props) => {
-  console.log("marker", position);
-
   return (
     <>
       <Marker position={position}>
