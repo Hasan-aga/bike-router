@@ -1,7 +1,7 @@
 import { LatLngExpression } from "leaflet";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useMap, useMapEvents } from "react-leaflet";
-import { pointContext } from "../../contexts/point.context";
+import { Point, pointContext } from "../../contexts/point.context";
 import MarkerWithPop from "./marker";
 
 type Props = {
@@ -10,25 +10,42 @@ type Props = {
 
 const UpdatedMap = ({ coords }: Props) => {
   const { points, setPoints } = useContext(pointContext);
+  const [temporaryPoint, setTemporaryPoint] = useState<Point>();
 
   const map = useMap();
   useEffect(() => {
-    // map.setView(coords as LatLngExpression);
-    map.flyTo(coords as LatLngExpression);
-  }, coords);
+    map.setView(coords as LatLngExpression);
+    // map.flyTo(coords as LatLngExpression); //animate the movement of the map
+  }, [map, coords]);
 
   useMapEvents({
     click(e) {
       const coords = e.latlng;
-      points.push({ type: "start", coords });
-      const newPoints = [...points];
-      setPoints(newPoints);
+      setTemporaryPoint({ type: "temporary", coords });
     },
   });
 
   return (
-    <MarkerWithPop position={points[points.length - 1].coords} map={map} />
+    <>
+      {temporaryPoint && (
+        <MarkerWithPop
+          key={temporaryPoint.coords as any as string}
+          position={temporaryPoint.coords}
+          map={map}
+        />
+      )}
+      {points.map((p) => {
+        return (
+          <MarkerWithPop
+            key={p.coords as any as string}
+            position={p.coords}
+            map={map}
+          />
+        );
+      })}
+    </>
   );
+  // <MarkerWithPop position={points[points.length - 1].coords} map={map} />
 };
 
 export default UpdatedMap;
