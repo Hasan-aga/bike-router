@@ -36,7 +36,8 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
     setStartPointExists(true);
   };
 
-  const removePoint = () => {
+  const removePoint = (type: PointType) => {
+    if (type === "start") setStartPointExists(false);
     const newPoints = points.filter((p) => p !== point);
     setPoints(newPoints);
   };
@@ -48,11 +49,8 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
           <div className="popup">
             <button
               onClick={(e) => {
-                console.log(e);
-
                 e.stopPropagation();
-
-                removePoint();
+                removePoint("start");
               }}
             >
               Remove point
@@ -68,8 +66,7 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-
-                removePoint();
+                removePoint("end");
               }}
             >
               {" "}
