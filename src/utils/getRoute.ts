@@ -1,5 +1,5 @@
-import { latLng, LatLngLiteral } from "leaflet";
-import { Feature, Properties } from "../contexts/routeTypes";
+import { LatLngLiteral } from "leaflet";
+import { Route } from "../contexts/routeTypes";
 
 export const getRoute = async (points: LatLngLiteral[]) => {
   const waypoints = points
@@ -14,11 +14,8 @@ export const getRoute = async (points: LatLngLiteral[]) => {
   `;
   try {
     const response = await fetch(url);
-    const result: {
-      features: Feature[];
-      properties: Properties;
-      type: string;
-    } = await response.json();
+
+    const result: Route = await response.json();
     console.log(result);
 
     return result;

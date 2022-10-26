@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useMap, useMapEvents } from "react-leaflet";
 import { Point, pointContext } from "../../contexts/point.context";
 import MarkerWithPop from "./marker";
+import Path from "./path.component";
 
 type Props = {
   coords: number[];
@@ -43,6 +44,7 @@ const UpdatedMap = ({ coords }: Props) => {
           />
         );
       })}
+      <Path />
     </>
   );
   // <MarkerWithPop position={points[points.length - 1].coords} map={map} />

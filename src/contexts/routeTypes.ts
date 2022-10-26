@@ -58,3 +58,10 @@ export interface Waypoint2 {
   lat: number;
   lon: number;
 }
+
+// i added this
+export interface Route {
+  features: Feature[];
+  properties: Properties;
+  type: string;
+}
