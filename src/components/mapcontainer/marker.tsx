@@ -1,17 +1,18 @@
 import { LatLngLiteral, Map } from "leaflet";
 import { Marker } from "react-leaflet";
+import { Point } from "../../contexts/point.context";
 import Popmenu from "./popup.component";
 
 type Props = {
-  position: LatLngLiteral;
+  point: Point;
   map: Map;
 };
 
-const MarkerWithPop = ({ position, map }: Props) => {
+const MarkerWithPop = ({ point, map }: Props) => {
   return (
     <>
-      <Marker position={position}>
-        <Popmenu position={position} map={map} />
+      <Marker position={point.coords}>
+        <Popmenu point={point} map={map} />
       </Marker>
     </>
   );

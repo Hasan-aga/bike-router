@@ -35,17 +35,13 @@ const UpdatedMap = ({ coords }: Props) => {
       {temporaryPoint && (
         <MarkerWithPop
           key={temporaryPoint.coords as any as string}
-          position={temporaryPoint.coords}
+          point={temporaryPoint}
           map={map}
         />
       )}
       {points.map((p) => {
         return (
-          <MarkerWithPop
-            key={p.coords as any as string}
-            position={p.coords}
-            map={map}
-          />
+          <MarkerWithPop key={p.coords as any as string} point={p} map={map} />
         );
       })}
       <Path points={points} />

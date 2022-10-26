@@ -6,9 +6,9 @@ import "./popup.style.scss";
 
 type Props = {
   map: Map;
-  position: LatLngLiteral;
+  point: Point;
 };
-const Popmenu = ({ map, position }: Props) => {
+const Popmenu = ({ map, point }: Props) => {
   const popupRef = useRef<LeafletPopup>(null);
   const { points, setPoints, startPointExists, setStartPointExists } =
     useContext(pointContext);
@@ -24,11 +24,11 @@ const Popmenu = ({ map, position }: Props) => {
   );
 
   useEffect(() => {
-    displayPopup(position);
-  }, [position, displayPopup]);
+    displayPopup(point.coords);
+  }, [point, displayPopup]);
 
   const createPoint = (type: PointType) => {
-    const newPoint: Point = { type, coords: position };
+    const newPoint: Point = { type, coords: point.coords };
     const newPoints = [...points];
     newPoints.push(newPoint);
     setPoints(newPoints);
@@ -36,36 +36,82 @@ const Popmenu = ({ map, position }: Props) => {
     setStartPointExists(true);
   };
 
-  return (
-    <Popup ref={popupRef}>
-      <div className="popup">
-        {!startPointExists && (
-          <button
-            onClick={(e) => {
-              console.log(e);
+  const removePoint = () => {
+    const newPoints = points.filter((p) => p !== point);
+    setPoints(newPoints);
+  };
 
-              e.stopPropagation();
+  switch (point.type) {
+    case "start":
+      return (
+        <Popup ref={popupRef}>
+          <div className="popup">
+            <button
+              onClick={(e) => {
+                console.log(e);
 
-              createPoint("start");
-            }}
-          >
-            {" "}
-            Set as start
-          </button>
-        )}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
+                e.stopPropagation();
 
-            createPoint("end");
-          }}
-        >
-          {" "}
-          Set as destination
-        </button>
-      </div>
-    </Popup>
-  );
+                removePoint();
+              }}
+            >
+              Remove point
+            </button>
+          </div>
+        </Popup>
+      );
+
+    case "end":
+      return (
+        <Popup ref={popupRef}>
+          <div className="popup">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+
+                removePoint();
+              }}
+            >
+              {" "}
+              Remove point
+            </button>
+          </div>
+        </Popup>
+      );
+
+    default:
+      return (
+        <Popup ref={popupRef}>
+          <div className="popup">
+            {!startPointExists && (
+              <button
+                onClick={(e) => {
+                  console.log(e);
+
+                  e.stopPropagation();
+
+                  createPoint("start");
+                }}
+              >
+                {" "}
+                Set as start
+              </button>
+            )}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+
+                createPoint("end");
+              }}
+            >
+              {" "}
+              Set as destination
+            </button>
+          </div>
+        </Popup>
+      );
+      break;
+  }
 };
 
 export default Popmenu;
