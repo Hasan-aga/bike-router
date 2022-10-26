@@ -10,8 +10,9 @@ type Props = {
 };
 
 const UpdatedMap = ({ coords }: Props) => {
-  const { points, setPoints } = useContext(pointContext);
+  const { points } = useContext(pointContext);
   const [temporaryPoint, setTemporaryPoint] = useState<Point>();
+  console.table(temporaryPoint);
 
   const map = useMap();
   useEffect(() => {
@@ -21,6 +22,9 @@ const UpdatedMap = ({ coords }: Props) => {
 
   useMapEvents({
     click(e) {
+      // BUG: when we click popup, this works again
+      console.log("pop");
+
       const coords = e.latlng;
       setTemporaryPoint({ type: "temporary", coords });
     },
@@ -47,7 +51,6 @@ const UpdatedMap = ({ coords }: Props) => {
       <Path points={points} />
     </>
   );
-  // <MarkerWithPop position={points[points.length - 1].coords} map={map} />
 };
 
 export default UpdatedMap;

@@ -41,7 +41,11 @@ const Popmenu = ({ map, position }: Props) => {
       <div className="popup">
         {!startPointExists && (
           <button
-            onClick={() => {
+            onClick={(e) => {
+              console.log(e);
+
+              e.stopPropagation();
+
               createPoint("start");
             }}
           >
@@ -50,7 +54,9 @@ const Popmenu = ({ map, position }: Props) => {
           </button>
         )}
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
+
             createPoint("end");
           }}
         >
