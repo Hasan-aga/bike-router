@@ -44,7 +44,7 @@ const UpdatedMap = ({ coords }: Props) => {
           />
         );
       })}
-      <Path />
+      <Path points={points} />
     </>
   );
   // <MarkerWithPop position={points[points.length - 1].coords} map={map} />
