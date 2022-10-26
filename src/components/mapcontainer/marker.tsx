@@ -6,13 +6,18 @@ import Popmenu from "./popup.component";
 type Props = {
   point: Point;
   map: Map;
+  setTemporaryPoint: React.Dispatch<React.SetStateAction<Point | undefined>>;
 };
 
-const MarkerWithPop = ({ point, map }: Props) => {
+const MarkerWithPop = ({ point, map, setTemporaryPoint }: Props) => {
   return (
     <>
       <Marker position={point.coords}>
-        <Popmenu point={point} map={map} />
+        <Popmenu
+          point={point}
+          map={map}
+          setTemporaryPoint={setTemporaryPoint}
+        />
       </Marker>
     </>
   );

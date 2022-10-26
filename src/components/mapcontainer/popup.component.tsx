@@ -7,8 +7,9 @@ import "./popup.style.scss";
 type Props = {
   map: Map;
   point: Point;
+  setTemporaryPoint: React.Dispatch<React.SetStateAction<Point | undefined>>;
 };
-const Popmenu = ({ map, point }: Props) => {
+const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
   const popupRef = useRef<LeafletPopup>(null);
   const { points, setPoints, startPointExists, setStartPointExists } =
     useContext(pointContext);
@@ -29,10 +30,9 @@ const Popmenu = ({ map, point }: Props) => {
 
   const createPoint = (type: PointType) => {
     const newPoint: Point = { type, coords: point.coords };
-    const newPoints = [...points];
-    newPoints.push(newPoint);
+    const newPoints = [...points, newPoint];
     setPoints(newPoints);
-
+    setTemporaryPoint(undefined);
     setStartPointExists(true);
   };
 
