@@ -18,7 +18,7 @@ const Path = ({ points }: { points: Point[] }) => {
     const startAndEndPoints = getStartAndEnd(points);
     const drawRoute = async () => {
       const results = startAndEndPoints && (await getRoute(startAndEndPoints));
-      if (!results) return;
+      if (!results) return setRouteData(undefined);
       setRouteData(results.features[0].geometry.coordinates);
     };
     drawRoute();

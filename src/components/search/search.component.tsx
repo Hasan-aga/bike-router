@@ -13,7 +13,7 @@ type searchProps = {
 };
 
 const Search = ({ placeholder }: searchProps) => {
-  const { searchValue, setSearchValue } = useContext(searchContext);
+  const { setSearchValue } = useContext(searchContext);
 
   const submitSearch = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
