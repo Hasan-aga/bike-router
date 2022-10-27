@@ -1,20 +1,22 @@
 import { LatLngLiteral, Map, Popup as LeafletPopup } from "leaflet";
 import { useCallback, useContext, useEffect, useRef } from "react";
 import { Popup } from "react-leaflet";
-import { Point, pointContext, PointType } from "../../contexts/point.context";
+import { Point, pointContext } from "../../contexts/point.context";
+import PopupButton from "../popupButton/popupButton.component";
 import "./popup.style.scss";
-
-const startPointExists = (points: Point[]): boolean =>
-  points.find((p) => p.type === "start") !== undefined;
 
 type Props = {
   map: Map;
   point: Point;
   setTemporaryPoint: React.Dispatch<React.SetStateAction<Point | undefined>>;
 };
+
+const startPointExists = (points: Point[]): boolean =>
+  points.find((p) => p.type === "start") !== undefined;
+
 const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
   const popupRef = useRef<LeafletPopup>(null);
-  const { points, setPoints } = useContext(pointContext);
+  const { points } = useContext(pointContext);
 
   const displayPopup = useCallback(
     (position: LatLngLiteral) => {
@@ -30,49 +32,24 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
     displayPopup(point.coords);
   }, [point, displayPopup]);
 
-  const createPoint = (type: PointType) => {
-    const newPoint: Point = { type, coords: point.coords };
-    const newPoints = [...points, newPoint];
-    setPoints(newPoints);
-    setTemporaryPoint(undefined);
-    if (type === "start") startPointExists(points);
-  };
-
-  const removePoint = (type: PointType) => {
-    const newPoints = points.filter((p) => p !== point);
-    setPoints(newPoints);
-  };
-
   switch (point.type) {
-    case "start":
+    case "temporary":
       return (
         <Popup ref={popupRef}>
           <div className="popup">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                removePoint("start");
-              }}
-            >
-              Remove point
-            </button>
-          </div>
-        </Popup>
-      );
+            {!startPointExists(points) && (
+              <PopupButton
+                point={point}
+                type="start"
+                setTemporaryPoint={setTemporaryPoint}
+              />
+            )}
 
-    case "end":
-      return (
-        <Popup ref={popupRef}>
-          <div className="popup">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                removePoint("end");
-              }}
-            >
-              {" "}
-              Remove point
-            </button>
+            <PopupButton
+              point={point}
+              type="end"
+              setTemporaryPoint={setTemporaryPoint}
+            />
           </div>
         </Popup>
       );
@@ -81,30 +58,11 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
       return (
         <Popup ref={popupRef}>
           <div className="popup">
-            {!startPointExists(points) && (
-              <button
-                onClick={(e) => {
-                  console.log(e);
-
-                  e.stopPropagation();
-
-                  createPoint("start");
-                }}
-              >
-                {" "}
-                Set as start
-              </button>
-            )}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-
-                createPoint("end");
-              }}
-            >
-              {" "}
-              Set as destination
-            </button>
+            <PopupButton
+              point={point}
+              type="remove"
+              setTemporaryPoint={setTemporaryPoint}
+            />
           </div>
         </Popup>
       );
