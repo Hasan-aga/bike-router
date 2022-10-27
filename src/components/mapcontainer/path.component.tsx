@@ -15,8 +15,15 @@ const Path = ({ points }: { points: Point[] }) => {
   const getStartAndEnd = (points: Point[]): LatLngLiteral[] | undefined => {
     const startPoint = points.find((p) => p.type === "start");
     const endPoint = points.find((p) => p.type === "end");
+    const midPoints = points.filter((p) => p.type === "mid");
+
     if (!startPoint || !endPoint) return;
-    return [startPoint.coords, endPoint.coords];
+    const pathCoords = [
+      startPoint.coords,
+      ...midPoints.map((p) => p.coords),
+      endPoint.coords,
+    ];
+    return pathCoords;
   };
 
   useEffect(() => {
