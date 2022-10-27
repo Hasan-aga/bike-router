@@ -46,9 +46,20 @@ export function calculateElevationProfileData(routeData: Route) {
       dataOptimized.push(data[index]);
     }
   });
-
-  return {
-    data: dataOptimized,
+  const result = {
     labels: labelsOptimized,
+    datasets: [
+      {
+        data: dataOptimized,
+        fill: true,
+        borderColor: "#66ccff",
+        backgroundColor: "#66ccff66",
+        tension: 0.1,
+        pointRadius: 0,
+        spanGaps: true,
+      },
+    ],
   };
+
+  return result;
 }
