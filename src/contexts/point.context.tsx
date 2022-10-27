@@ -1,6 +1,5 @@
 import { LatLngLiteral } from "leaflet";
 import { createContext, ReactNode, useState } from "react";
-import { getRoute } from "../utils/getRoute";
 
 export type PointType = "start" | "end" | "mid" | "temporary";
 export type Point = {
