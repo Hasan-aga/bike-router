@@ -52,7 +52,7 @@ export function calculateElevationProfileData(routeData: Route) {
       {
         data: dataOptimized,
         fill: true,
-        borderColor: "#66ccff",
+        borderColor: "#aa767c",
         backgroundColor: "#66ccff66",
         tension: 0.1,
         pointRadius: 0,

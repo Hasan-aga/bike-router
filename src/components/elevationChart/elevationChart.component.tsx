@@ -20,12 +20,20 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const options = {
     responsive: true,
     plugins: {
-      legend: {
-        position: "top" as const,
-      },
       title: {
         display: true,
-        text: "Chart.js Line Chart",
+        text: "Elevation chart",
+      },
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        display: true,
+      },
+      x: {
+        display: false, // Hide X axis labels
       },
     },
   };
@@ -36,14 +44,11 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
     PointElement,
     LineElement,
     Title,
-    Tooltip,
-    Legend
+    Tooltip
   );
-
   return (
     <div className="elevation-chart">
-      <h2>hello chart</h2>
-      <Line options={options} data={chartData} />
+      <Line height={"40%"} options={options} data={chartData} />
     </div>
   );
 };
