@@ -1,13 +1,23 @@
 import { createContext, ReactNode, useState } from "react";
 import { Route } from "../utils/routeTypes";
 
-export const pathContext = createContext({});
+interface Path {
+  path: Route | undefined;
+  setPath:
+    | React.Dispatch<React.SetStateAction<Route>>
+    | React.Dispatch<React.SetStateAction<undefined>>;
+}
+
+export const pathContext = createContext<Path>({
+  setPath: () => {},
+  path: undefined,
+});
 type Props = {
   children?: ReactNode;
 };
 
 export const PathProvider = ({ children }: Props) => {
-  const [path, setPath] = useState();
+  const [path, setPath] = useState(undefined);
   const value = { path, setPath };
 
   return <pathContext.Provider value={value}>{children}</pathContext.Provider>;
