@@ -7,9 +7,6 @@ interface Props {
   setTemporaryPoint: React.Dispatch<React.SetStateAction<Point | undefined>>;
 }
 
-const startPointExists = (points: Point[]): boolean =>
-  points.find((p) => p.type === "start") !== undefined;
-
 const PopupButton = ({ type, setTemporaryPoint, point }: Props) => {
   const { points, setPoints } = useContext(pointContext);
 
@@ -18,7 +15,6 @@ const PopupButton = ({ type, setTemporaryPoint, point }: Props) => {
     const newPoints = [...points, newPoint];
     setPoints(newPoints);
     setTemporaryPoint(undefined);
-    if (type === "start") startPointExists(points);
   };
 
   const removePoint = () => {
