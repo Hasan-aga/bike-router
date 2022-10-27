@@ -8,7 +8,6 @@ import { getRoute } from "../../utils/getRoute";
 const Path = ({ points }: { points: Point[] }) => {
   // const [routeData, setRouteData] = useState<number[][][]>();
   const { path, setPath } = useContext(pathContext);
-  console.log(`path= ${path}`);
 
   const legs = path && path.features[0].geometry.coordinates;
 

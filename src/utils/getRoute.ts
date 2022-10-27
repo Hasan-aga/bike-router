@@ -8,8 +8,6 @@ export const getRoute = async (points: LatLngLiteral[]) => {
     })
     .join("|");
 
-  console.log(waypoints);
-
   const url = `https://api.geoapify.com/v1/routing?waypoints=${waypoints}&mode=bicycle&details=elevation&apiKey=${process.env.REACT_APP_API_KEY}
   `;
   try {
