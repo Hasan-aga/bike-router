@@ -50,13 +50,15 @@ export function calculateElevationProfileData(routeData: Route) {
     labels: labelsOptimized,
     datasets: [
       {
+        normalized: true,
         data: dataOptimized,
         fill: true,
         borderColor: "#aa767c",
         backgroundColor: "#66ccff66",
-        tension: 0.1,
+        tension: 0,
         pointRadius: 0,
         spanGaps: true,
+        animation: true,
       },
     ],
   };

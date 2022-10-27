@@ -28,6 +28,12 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
         display: false,
       },
     },
+    interactions: {
+      mode: "x",
+    },
+    tooltips: {
+      position: "nearest",
+    },
     scales: {
       y: {
         display: true,

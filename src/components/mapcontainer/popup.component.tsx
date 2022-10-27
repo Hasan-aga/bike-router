@@ -33,7 +33,7 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
     const newPoints = [...points, newPoint];
     setPoints(newPoints);
     setTemporaryPoint(undefined);
-    setStartPointExists(true);
+    if (type === "start") setStartPointExists(true);
   };
 
   const removePoint = (type: PointType) => {
