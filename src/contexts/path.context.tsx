@@ -3,9 +3,7 @@ import { Route } from "../utils/routeTypes";
 
 interface Path {
   path: Route | undefined;
-  setPath:
-    | React.Dispatch<React.SetStateAction<Route>>
-    | React.Dispatch<React.SetStateAction<undefined>>;
+  setPath: React.Dispatch<React.SetStateAction<Route | undefined>>;
 }
 
 export const pathContext = createContext<Path>({
@@ -17,7 +15,7 @@ type Props = {
 };
 
 export const PathProvider = ({ children }: Props) => {
-  const [path, setPath] = useState(undefined);
+  const [path, setPath] = useState<Route | undefined>();
   const value = { path, setPath };
 
   return <pathContext.Provider value={value}>{children}</pathContext.Provider>;
