@@ -14,6 +14,7 @@ export interface Properties {
   mode: string;
   waypoints: Waypoint[];
   units: string;
+  details: string[];
   distance: number;
   distance_units: string;
   time: number;
@@ -29,6 +30,8 @@ export interface Leg {
   distance: number;
   time: number;
   steps: Step[];
+  elevation_range: number[][];
+  elevation: number[];
 }
 
 export interface Step {
@@ -37,6 +40,10 @@ export interface Step {
   distance: number;
   time: number;
   instruction: Instruction;
+  max_elevation: number;
+  min_elevation: number;
+  elevation_gain: number;
+  elevation: number;
 }
 
 export interface Instruction {
@@ -52,6 +59,7 @@ export interface Properties2 {
   mode: string;
   waypoints: Waypoint2[];
   units: string;
+  details: string[];
 }
 
 export interface Waypoint2 {
