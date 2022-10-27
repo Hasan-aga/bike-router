@@ -4,6 +4,9 @@ import { Popup } from "react-leaflet";
 import { Point, pointContext, PointType } from "../../contexts/point.context";
 import "./popup.style.scss";
 
+const startPointExists = (points: Point[]): boolean =>
+  points.find((p) => p.type === "start") !== undefined;
+
 type Props = {
   map: Map;
   point: Point;
@@ -11,8 +14,7 @@ type Props = {
 };
 const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
   const popupRef = useRef<LeafletPopup>(null);
-  const { points, setPoints, startPointExists, setStartPointExists } =
-    useContext(pointContext);
+  const { points, setPoints } = useContext(pointContext);
 
   const displayPopup = useCallback(
     (position: LatLngLiteral) => {
@@ -33,11 +35,10 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
     const newPoints = [...points, newPoint];
     setPoints(newPoints);
     setTemporaryPoint(undefined);
-    if (type === "start") setStartPointExists(true);
+    if (type === "start") startPointExists(points);
   };
 
   const removePoint = (type: PointType) => {
-    if (type === "start") setStartPointExists(false);
     const newPoints = points.filter((p) => p !== point);
     setPoints(newPoints);
   };
@@ -80,7 +81,7 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
       return (
         <Popup ref={popupRef}>
           <div className="popup">
-            {!startPointExists && (
+            {!startPointExists(points) && (
               <button
                 onClick={(e) => {
                   console.log(e);
@@ -107,7 +108,6 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
           </div>
         </Popup>
       );
-      break;
   }
 };
 
