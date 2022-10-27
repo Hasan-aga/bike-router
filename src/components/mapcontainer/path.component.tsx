@@ -1,11 +1,16 @@
 import { LatLngExpression, LatLngLiteral } from "leaflet";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Polyline } from "react-leaflet";
+import { pathContext } from "../../contexts/path.context";
 import { Point } from "../../contexts/point.context";
 import { getRoute } from "../../utils/getRoute";
 
 const Path = ({ points }: { points: Point[] }) => {
-  const [routeData, setRouteData] = useState<number[][][]>();
+  // const [routeData, setRouteData] = useState<number[][][]>();
+  const { path, setPath } = useContext(pathContext);
+  console.log(`path= ${path}`);
+
+  const legs = path && path.features[0].geometry.coordinates;
 
   const getStartAndEnd = (points: Point[]): LatLngLiteral[] | undefined => {
     const startPoint = points.find((p) => p.type === "start");
@@ -16,23 +21,23 @@ const Path = ({ points }: { points: Point[] }) => {
 
   useEffect(() => {
     const startAndEndPoints = getStartAndEnd(points);
-    const drawRoute = async () => {
+    const getPathData = async () => {
       const results = startAndEndPoints && (await getRoute(startAndEndPoints));
-      if (!results) return setRouteData(undefined);
-      setRouteData(results.features[0].geometry.coordinates);
+      if (!results) setPath(undefined);
+      setPath(results);
     };
-    drawRoute();
+    getPathData();
   }, [points]);
   return (
     <>
-      {routeData &&
-        routeData.map((path) => {
+      {legs &&
+        legs.map((leg) => {
           return (
             <Polyline
-              key={path[0][0]}
+              key={leg[0][0]}
               pathOptions={{ color: "red" }}
               positions={
-                path.map((latLng) => [
+                leg.map((latLng) => [
                   latLng[1],
                   latLng[0],
                 ]) as LatLngExpression[]
