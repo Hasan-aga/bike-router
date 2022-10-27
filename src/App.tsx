@@ -1,6 +1,7 @@
 import "./App.css";
-import Mapcontainer from "./components/mapcontainer/mapcontainer.component";
+import DataViz from "./components/dataViz/dataViz.component";
 import Sidemenu from "./components/sidemenu/sidemenu.component";
+
 import { PointProvider } from "./contexts/point.context";
 import { SearchProvider } from "./contexts/search.context";
 
@@ -10,7 +11,7 @@ function App() {
       <SearchProvider>
         <PointProvider>
           <Sidemenu />
-          <Mapcontainer />
+          <DataViz />
         </PointProvider>
       </SearchProvider>
     </div>
