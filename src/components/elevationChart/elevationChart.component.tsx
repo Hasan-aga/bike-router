@@ -10,15 +10,27 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import {
+  getDatasetAtEvent,
+  getElementAtEvent,
+  getElementsAtEvent,
+  Line,
+} from "react-chartjs-2";
+import { useRef } from "react";
+import { ChartJSOrUndefined } from "react-chartjs-2/dist/types";
 
 const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const chartData = calculateElevationProfileData(pathData);
 
+  const chartRef = useRef<ChartJSOrUndefined<"line", number[], number>>();
+
   const options = {
     responsive: true,
+    elements: {
+      point: { pointBorderColor: "#aa767c", pointStyle: "cross", rotation: 45 },
+      line: { borderWidth: 3 },
+    },
     plugins: {
       title: {
         display: true,
@@ -28,11 +40,9 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
         display: false,
       },
     },
-    interactions: {
-      mode: "x",
-    },
     tooltips: {
-      position: "nearest",
+      intersect: false,
+      mode: "nearest",
     },
     scales: {
       y: {
@@ -54,7 +64,17 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
   );
   return (
     <div className="elevation-chart">
-      <Line height={"40%"} options={options} data={chartData} />
+      <Line
+        ref={chartRef}
+        height={"40%"}
+        options={options}
+        data={chartData}
+        onClick={(e) => {
+          //TODO: GET DATA FROM NEAREST POINT
+          chartRef.current &&
+            console.log(getElementAtEvent(chartRef.current, e));
+        }}
+      />
     </div>
   );
 };
