@@ -1,6 +1,7 @@
 import "./App.css";
 import DataViz from "./components/dataViz/dataViz.component";
 import Sidemenu from "./components/sidemenu/sidemenu.component";
+import { ChartPointProvider } from "./contexts/chart.context";
 import { PathProvider } from "./contexts/path.context";
 
 import { PointProvider } from "./contexts/point.context";
@@ -12,8 +13,10 @@ function App() {
       <SearchProvider>
         <PointProvider>
           <PathProvider>
-            <Sidemenu />
-            <DataViz />
+            <ChartPointProvider>
+              <Sidemenu />
+              <DataViz />
+            </ChartPointProvider>
           </PathProvider>
         </PointProvider>
       </SearchProvider>

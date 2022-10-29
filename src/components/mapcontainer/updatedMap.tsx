@@ -1,6 +1,7 @@
 import { LatLngExpression } from "leaflet";
 import { useContext, useEffect, useState } from "react";
 import { useMap, useMapEvents } from "react-leaflet";
+import { chartPointContext } from "../../contexts/chart.context";
 import { Point, pointContext } from "../../contexts/point.context";
 import MarkerWithPop from "./marker";
 import Path from "./path.component";
@@ -12,6 +13,8 @@ type Props = {
 const UpdatedMap = ({ coords }: Props) => {
   const { points } = useContext(pointContext);
   const [temporaryPoint, setTemporaryPoint] = useState<Point>();
+  const { chartPoint } = useContext(chartPointContext);
+  console.log(chartPoint);
 
   const map = useMap();
   useEffect(() => {
