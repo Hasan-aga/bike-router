@@ -1,8 +1,14 @@
 import { Route } from "../../utils/routeTypes";
 import { calculateElevationProfileData } from "../../utils/getElevationData";
 import "./elevationChart.style.scss";
-import { ResponsiveContainer, XAxis, YAxis, AreaChart, Area } from "recharts";
-import { Tooltip } from "react-leaflet";
+import {
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  AreaChart,
+  Area,
+  Tooltip,
+} from "recharts";
 import { useContext } from "react";
 import { chartPointContext } from "../../contexts/chart.context";
 import { CategoricalChartState } from "recharts/types/chart/generateCategoricalChart";
@@ -10,8 +16,24 @@ import { CategoricalChartState } from "recharts/types/chart/generateCategoricalC
 const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const chartData = calculateElevationProfileData(pathData);
   const { setChartPoint } = useContext(chartPointContext);
+
   const setHoveredPoint = (chartState: CategoricalChartState) => {
-    setChartPoint(Number(chartState.activeLabel));
+    const hoveredLabel = Number(chartState.activeLabel);
+    if (!hoveredLabel) return;
+
+    const elevation_range =
+      pathData.features[0].properties.legs[0].elevation_range;
+    const hoveredIndex = elevation_range.findIndex(
+      (data) => data[0] === hoveredLabel
+    );
+
+    const hoveredPoint =
+      pathData.features[0].geometry.coordinates[0][hoveredIndex];
+
+    setChartPoint({
+      type: "temporary",
+      coords: { lat: hoveredPoint[1], lng: hoveredPoint[0] },
+    });
   };
 
   return (

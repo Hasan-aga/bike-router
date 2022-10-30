@@ -1,8 +1,9 @@
 import { createContext, ReactNode, useState } from "react";
+import { Point } from "./point.context";
 
 interface ChartPoint {
-  chartPoint: number | undefined;
-  setChartPoint: React.Dispatch<React.SetStateAction<number | undefined>>;
+  chartPoint: Point | undefined;
+  setChartPoint: React.Dispatch<React.SetStateAction<Point | undefined>>;
 }
 
 export const chartPointContext = createContext<ChartPoint>({
@@ -11,7 +12,7 @@ export const chartPointContext = createContext<ChartPoint>({
 });
 
 export const ChartPointProvider = ({ children }: { children: ReactNode }) => {
-  const [chartPoint, setChartPoint] = useState<number | undefined>();
+  const [chartPoint, setChartPoint] = useState<Point | undefined>();
   const value = { chartPoint, setChartPoint };
   return (
     <chartPointContext.Provider value={value}>

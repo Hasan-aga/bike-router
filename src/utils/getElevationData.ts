@@ -48,7 +48,10 @@ export function calculateElevationProfileData(routeData: Route) {
   });
   const result = [];
   for (let i = 0; i < dataOptimized.length; i++) {
-    result.push({ data: dataOptimized[i], label: labelsOptimized[i] });
+    result.push({
+      data: dataOptimized[i],
+      label: labelsOptimized[i],
+    });
   }
   // TODO: this should be memoized or used in a hook
   return result;

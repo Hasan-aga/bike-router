@@ -14,7 +14,6 @@ const UpdatedMap = ({ coords }: Props) => {
   const { points } = useContext(pointContext);
   const [temporaryPoint, setTemporaryPoint] = useState<Point>();
   const { chartPoint } = useContext(chartPointContext);
-  console.log(chartPoint);
 
   const map = useMap();
   useEffect(() => {
@@ -49,6 +48,14 @@ const UpdatedMap = ({ coords }: Props) => {
           />
         );
       })}
+      {chartPoint && (
+        <MarkerWithPop
+          key={chartPoint.coords as any as string}
+          point={chartPoint}
+          map={map}
+          setTemporaryPoint={setTemporaryPoint}
+        />
+      )}
       <Path points={points} />
     </>
   );
