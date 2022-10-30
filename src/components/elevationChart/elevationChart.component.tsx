@@ -1,5 +1,8 @@
 import { Route } from "../../utils/routeTypes";
-import { calculateElevation } from "../../utils/getElevationData";
+import {
+  calculateElevation,
+  getPointFromDistance,
+} from "../../utils/getElevationData";
 import "./elevationChart.style.scss";
 import {
   ResponsiveContainer,
@@ -24,48 +27,7 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
     const hoveredLabel = Number(chartState.activeLabel);
     if (!hoveredLabel) return;
 
-    const elevation_range: number[][] = [];
-
-    pathData.features[0].properties.legs.forEach((leg, index) => {
-      //  each elevation_range is array of [distance, elevation]
-      // distance of current leg must be incremented by last distance of prev leg
-      // if index === 0 -> increment = 0
-      //  if index > 0 -> increment = prevLeg.elevation_range.at(-1)[0]
-      const lastElevationRange =
-        index > 0
-          ? pathData.features[0].properties.legs[index - 1].elevation_range.at(
-              -1
-            )
-          : undefined;
-      const increment = lastElevationRange ? lastElevationRange[0] : 0;
-      const fixedElevationRange = leg.elevation_range.map((elevation) => {
-        const distance = elevation[0] + increment;
-        return [distance, elevation[1]];
-      });
-
-      elevation_range.push(...fixedElevationRange);
-    });
-
-    const hoveredIndex = elevation_range.findIndex(
-      (data) => data[0] === hoveredLabel
-    );
-
-    const hoveredPoint =
-      pathData.features[0].geometry.coordinates.flat()[hoveredIndex];
-
-    console.log(
-      pathData.features[0].geometry.coordinates.flat().length,
-      hoveredIndex
-    );
-
-    console.log("hovered point", hoveredPoint);
-    if (!hoveredPoint) {
-      return;
-    }
-    setChartPoint({
-      type: "temporary",
-      coords: { lat: hoveredPoint[1], lng: hoveredPoint[0] },
-    });
+    setChartPoint(getPointFromDistance(hoveredLabel, pathData));
   };
 
   const clearHoverPoint = () => {

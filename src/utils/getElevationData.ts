@@ -1,31 +1,58 @@
-import { Route } from "./routeTypes";
+import { Point } from "../contexts/point.context";
+import { Leg, Route } from "./routeTypes";
+
+export const relateDistanceAcrossLegs = (legs: Leg[]): number[][] => {
+  const elevation_range: number[][] = [];
+
+  legs.forEach((leg, index) => {
+    //  each elevation_range is array of [distance, elevation]
+    // distance of current leg must be incremented by last distance of prev leg
+    // if index === 0 -> increment = 0
+    //  if index > 0 -> increment = prevLeg.elevation_range.at(-1)[0]
+    const lastElevationRange =
+      index > 0 ? legs[index - 1].elevation_range.at(-1) : undefined;
+    const increment = lastElevationRange ? lastElevationRange[0] : 0;
+    const fixedElevationRange = leg.elevation_range.map((elevation) => {
+      const distance = elevation[0] + increment;
+      return [distance, elevation[1]];
+    });
+
+    elevation_range.push(...fixedElevationRange);
+  });
+  return elevation_range;
+};
+
+export const getPointFromDistance = (
+  distance: number,
+  pathData: Route
+): Point => {
+  const elevation_range = relateDistanceAcrossLegs(
+    pathData.features[0].properties.legs
+  );
+  const hoveredIndex = elevation_range.findIndex(
+    (data) => data[0] === distance
+  );
+
+  const hoveredPoint =
+    pathData.features[0].geometry.coordinates.flat()[hoveredIndex];
+
+  return {
+    type: "temporary",
+    coords: { lat: hoveredPoint[1], lng: hoveredPoint[0] },
+  };
+};
 
 export function calculateElevation(routeData: Route) {
-  const legElevations: number[][][] = [];
+  const legElevations: number[][] = relateDistanceAcrossLegs(
+    routeData.features[0].properties.legs
+  );
 
-  // elevation_range contains pairs [distance, elevation] for every leg geometry point
-  routeData.features[0].properties.legs.forEach((leg) => {
-    if (leg.elevation_range) {
-      legElevations.push(leg.elevation_range);
-    } else {
-      legElevations.push([]);
-    }
-  });
   const labels: number[] = [];
   const data: number[] = [];
 
-  legElevations.forEach((legElevation, index) => {
-    let previousLegsDistance = 0;
-    for (let i = 0; i <= index - 1; i++) {
-      previousLegsDistance += legElevations[i][legElevations[i].length - 1][0];
-    }
-
-    labels.push(
-      ...legElevation.map(
-        (elevationData) => elevationData[0] + previousLegsDistance
-      )
-    );
-    data.push(...legElevation.map((elevationData) => elevationData[1]));
+  legElevations.forEach((legElevation) => {
+    labels.push(legElevation[0]);
+    data.push(legElevation[1]);
   });
 
   // optimize array size to avoid performance problems
@@ -54,5 +81,6 @@ export function calculateElevation(routeData: Route) {
     });
   }
   // TODO: this should be memoized or used in a hook
+
   return result;
 }
