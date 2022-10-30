@@ -8,6 +8,7 @@ import {
   AreaChart,
   Area,
   Tooltip,
+  ReferenceArea,
 } from "recharts";
 import { useContext, useState } from "react";
 import { chartPointContext } from "../../contexts/chart.context";
@@ -57,7 +58,7 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
     const slope = (verticalDelta / horizontalDelta) * 100;
 
     console.log(`slope: ${slope}`);
-    return slope;
+    return slope.toFixed(2);
   };
 
   return (
@@ -66,21 +67,22 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
         <AreaChart
           data={chartData}
           onMouseMove={(e) => {
-            firstPoint && setSecondPoint(Number(e.activeLabel));
             setHoveredPoint(e);
           }}
           onMouseLeave={clearHoverPoint}
           onMouseDown={(e) => setFirstPoint(Number(e.activeLabel))}
-          onMouseUp={() => {
-            firstPoint &&
-              secondPoint &&
-              calculateSlope(firstPoint, secondPoint);
+          onMouseUp={(e) => {
+            firstPoint && setSecondPoint(Number(e.activeLabel));
           }}
         >
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
               <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="colorHighlight" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="label" />
@@ -93,6 +95,17 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
             fillOpacity={1}
             fill="url(#colorUv)"
           />
+          {secondPoint && (
+            <ReferenceArea
+              x1={firstPoint}
+              x2={secondPoint}
+              label={`${
+                firstPoint &&
+                secondPoint &&
+                calculateSlope(firstPoint, secondPoint)
+              }% elevation`}
+            />
+          )}
         </AreaChart>
       </ResponsiveContainer>
     </div>
