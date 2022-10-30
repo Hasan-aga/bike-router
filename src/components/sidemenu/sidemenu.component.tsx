@@ -7,7 +7,7 @@ const Sidemenu = () => {
   const { points } = useContext(pointContext);
 
   return (
-    <div className="sidemenu">
+    <div className="sidemenu scroll scroll-5">
       <Search placeholder="Search.." />
       {points.map((point) => (
         <InfoCard
