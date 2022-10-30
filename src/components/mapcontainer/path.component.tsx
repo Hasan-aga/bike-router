@@ -11,7 +11,7 @@ const Path = ({ points }: { points: Point[] }) => {
 
   const legs = path && path.features[0].geometry.coordinates;
 
-  const getStartAndEnd = (points: Point[]): LatLngLiteral[] | undefined => {
+  const getPathPoints = (points: Point[]): LatLngLiteral[] | undefined => {
     const startPoint = points.find((p) => p.type === "start");
     const endPoint = points.find((p) => p.type === "end");
     const midPoints = points.filter((p) => p.type === "mid");
@@ -26,9 +26,10 @@ const Path = ({ points }: { points: Point[] }) => {
   };
 
   useEffect(() => {
-    const startAndEndPoints = getStartAndEnd(points);
+    const pathPoints = getPathPoints(points);
+
     const getPathData = async () => {
-      const results = startAndEndPoints && (await getRoute(startAndEndPoints));
+      const results = pathPoints && (await getRoute(pathPoints));
       if (!results) setPath(undefined);
       setPath(results);
     };

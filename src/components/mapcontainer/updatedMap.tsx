@@ -16,6 +16,7 @@ const UpdatedMap = ({ coords }: Props) => {
   const { chartPoint } = useContext(chartPointContext);
 
   const map = useMap();
+
   useEffect(() => {
     map.setView(coords as LatLngExpression);
     // map.flyTo(coords as LatLngExpression); //animate the movement of the map
