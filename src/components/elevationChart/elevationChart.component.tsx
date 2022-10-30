@@ -36,10 +36,18 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
     });
   };
 
+  const clearHoverPoint = () => {
+    setChartPoint(undefined);
+  };
+
   return (
     <div className="elevation-chart">
       <ResponsiveContainer width="100%" height={340}>
-        <AreaChart data={chartData} onMouseMove={setHoveredPoint}>
+        <AreaChart
+          data={chartData}
+          onMouseMove={setHoveredPoint}
+          onMouseLeave={clearHoverPoint}
+        >
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
