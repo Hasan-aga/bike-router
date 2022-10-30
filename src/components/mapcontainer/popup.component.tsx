@@ -108,41 +108,7 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
     </Popup>
   );
 
-  // switch (point.type) {
-  //   case "temporary":
-  //     return (
-  //       <Popup ref={popupRef}>
-  //         <div className="popup">
-  //           {!startPointExists(points) && (
-  //             <PopupButton
-  //               point={point}
-  //               type="start"
-  //               setTemporaryPoint={setTemporaryPoint}
-  //             />
-  //           )}
-
-  //           <PopupButton
-  //             point={point}
-  //             type="end"
-  //             setTemporaryPoint={setTemporaryPoint}
-  //           />
-  //         </div>
-  //       </Popup>
-  //     );
-
-  //   default:
-  //     return (
-  //       <Popup ref={popupRef}>
-  //         <div className="popup">
-  //           <PopupButton
-  //             point={point}
-  //             type="remove"
-  //             setTemporaryPoint={setTemporaryPoint}
-  //           />
-  //         </div>
-  //       </Popup>
-  //     );
-  // }
+  
 };
 
 export default Popmenu;
