@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import DataViz from "./components/dataViz/dataViz.component";
 import Sidemenu from "./components/sidemenu/sidemenu.component";
 import { ChartPointProvider } from "./contexts/chart.context";
