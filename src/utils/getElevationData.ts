@@ -1,6 +1,6 @@
 import { Route } from "./routeTypes";
 
-export function calculateElevationProfileData(routeData: Route) {
+export function calculateElevation(routeData: Route) {
   const legElevations: number[][][] = [];
 
   // elevation_range contains pairs [distance, elevation] for every leg geometry point
