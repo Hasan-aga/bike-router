@@ -12,6 +12,7 @@ import {
   Area,
   Tooltip,
   ReferenceArea,
+  Label,
 } from "recharts";
 import { useContext, useState } from "react";
 import { chartPointContext } from "../../contexts/chart.context";
@@ -19,6 +20,8 @@ import { CategoricalChartState } from "recharts/types/chart/generateCategoricalC
 
 const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const chartData = calculateElevation(pathData);
+  console.log(chartData[0].elevation);
+
   const { setChartPoint } = useContext(chartPointContext);
   const [firstPoint, setFirstPoint] = useState<number>();
   const [secondPoint, setSecondPoint] = useState<number>();
@@ -57,6 +60,7 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
       <ResponsiveContainer width="100%" height={340}>
         <AreaChart
           data={chartData}
+          margin={{ top: 1, right: 1, left: 1, bottom: 30 }}
           onMouseMove={(e) => {
             setHoveredPoint(e);
           }}
@@ -76,12 +80,20 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
               <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <XAxis dataKey="label" />
-          <YAxis dataKey="data" />
+          <XAxis dataKey="distance">
+            <Label
+              value="Distance in meters"
+              offset={-15}
+              position="insideBottom"
+            />
+          </XAxis>
+          <YAxis dataKey="elevation">
+            <Label value="Elevation in meters" angle={-90} />
+          </YAxis>
           <Tooltip />
           <Area
             type="monotone"
-            dataKey="data"
+            dataKey="elevation"
             stroke="#8884d8"
             fillOpacity={1}
             fill="url(#colorUv)"
