@@ -36,11 +36,11 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
 
   const calculateSlope = (startPoint: number, endPoint: number) => {
     const startElevation = chartData.find(
-      (element) => element.label === startPoint
-    )?.data;
+      (element) => element.distance === startPoint
+    )?.elevation;
     const endElevation = chartData.find(
-      (element) => element.label === endPoint
-    )?.data;
+      (element) => element.distance === endPoint
+    )?.elevation;
 
     if (!startElevation || !endElevation) return;
     const horizontalDelta = Math.abs(endPoint - startPoint);

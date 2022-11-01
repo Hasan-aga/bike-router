@@ -47,37 +47,38 @@ export function calculateElevation(routeData: Route) {
     routeData.features[0].properties.legs
   );
 
-  const labels: number[] = [];
-  const data: number[] = [];
+  const distance: number[] = [];
+  const elevation: number[] = [];
 
   legElevations.forEach((legElevation) => {
-    labels.push(legElevation[0]);
-    data.push(legElevation[1]);
+    distance.push(legElevation[0]);
+    elevation.push(legElevation[1]);
   });
 
   // optimize array size to avoid performance problems
-  const labelsOptimized: number[] = [];
-  const dataOptimized: number[] = [];
+  const distanceOptimized: number[] = [];
+  const elevationOptimized: number[] = [];
   const minDist = 5; // ~5m
   const minHeight = 10; // ~10m
 
-  labels.forEach((dist, index) => {
+  distance.forEach((dist, index) => {
     if (
       index === 0 ||
-      index === labels.length - 1 ||
-      dist - labelsOptimized[labelsOptimized.length - 1] > minDist ||
-      Math.abs(data[index] - dataOptimized[dataOptimized.length - 1]) >
-        minHeight
+      index === distance.length - 1 ||
+      dist - distanceOptimized[distanceOptimized.length - 1] > minDist ||
+      Math.abs(
+        elevation[index] - elevationOptimized[elevationOptimized.length - 1]
+      ) > minHeight
     ) {
-      labelsOptimized.push(dist);
-      dataOptimized.push(data[index]);
+      distanceOptimized.push(dist);
+      elevationOptimized.push(elevation[index]);
     }
   });
   const result = [];
-  for (let i = 0; i < dataOptimized.length; i++) {
+  for (let i = 0; i < elevationOptimized.length; i++) {
     result.push({
-      data: dataOptimized[i],
-      label: labelsOptimized[i],
+      elevation: elevationOptimized[i],
+      distance: distanceOptimized[i],
     });
   }
   // TODO: this should be memoized or used in a hook
