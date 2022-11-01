@@ -1,6 +1,6 @@
 import "./App.scss";
-import DataViz from "./components/dataViz/dataViz.component";
-import Sidemenu from "./components/sidemenu/sidemenu.component";
+import Dashboard from "./components/dashboard/dashboard.component";
+import Mapcontainer from "./components/mapcontainer/mapcontainer.component";
 import { ChartPointProvider } from "./contexts/chart.context";
 import { PathProvider } from "./contexts/path.context";
 
@@ -14,8 +14,8 @@ function App() {
         <PointProvider>
           <PathProvider>
             <ChartPointProvider>
-              <Sidemenu />
-              <DataViz />
+              <Mapcontainer />
+              <Dashboard />
             </ChartPointProvider>
           </PathProvider>
         </PointProvider>

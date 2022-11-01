@@ -28,7 +28,6 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const [calculateInclination, setCalculateInclination] =
     useState<boolean>(false);
 
-  console.log("1st and 2nd points", firstPoint, secondPoint);
 
   const setHoveredPoint = (chartState: CategoricalChartState) => {
     const hoveredLabel = Number(chartState.activeLabel);
@@ -59,11 +58,13 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
 
   return (
     <div className="elevation-chart">
-      <ResponsiveContainer width="100%" height={340}>
+      <ResponsiveContainer >
         <AreaChart
           data={chartData}
           margin={{ top: 1, right: 1, left: 1, bottom: 30 }}
           onMouseMove={(e) => {
+            console.log(startHighlight);
+            
             setHoveredPoint(e);
             startHighlight && setSecondPoint(Number(e.activeLabel));
             startHighlight && setCalculateInclination(true);
@@ -105,6 +106,7 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
           <YAxis dataKey="elevation">
             <Label
               value="Elevation in meters"
+              position="insideLeft"
               angle={-90}
               style={{
                 textAnchor: "middle",
@@ -125,8 +127,7 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
             <ReferenceArea
               x1={firstPoint}
               x2={secondPoint}
-              label=<Label
-              value={`${calculateSlope(firstPoint, secondPoint)}% inclination`}
+              label=<Label value={`${calculateSlope(firstPoint, secondPoint)}% inclination`}
               style={{
                 textAnchor: "middle",
                 fontSize: "90%",

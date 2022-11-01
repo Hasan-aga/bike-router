@@ -1,0 +1,9 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  height: 30%;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  z-index: 1000;
+}

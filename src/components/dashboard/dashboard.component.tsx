@@ -1,18 +1,17 @@
 import { useContext } from "react";
 import { pathContext } from "../../contexts/path.context";
 import ElevationChart from "../elevationChart/elevationChart.component";
-import Mapcontainer from "../mapcontainer/mapcontainer.component";
-import "./dataViz.style.scss";
+import Sidemenu from "../sidemenu/sidemenu.component";
+import "./dashboard.style.scss";
 
-const DataViz = () => {
+const Dashboard = () => {
   const { path } = useContext(pathContext);
-
   return (
-    <div className="data-viz">
-      <Mapcontainer />
+    <div className="dashboard">
+      <Sidemenu />
       {path && <ElevationChart pathData={path} />}
     </div>
   );
 };
 
-export default DataViz;
+export default Dashboard;
