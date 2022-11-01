@@ -20,11 +20,15 @@ import { CategoricalChartState } from "recharts/types/chart/generateCategoricalC
 
 const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const chartData = calculateElevation(pathData);
-  console.log(chartData[0].elevation);
 
   const { setChartPoint } = useContext(chartPointContext);
   const [firstPoint, setFirstPoint] = useState<number>();
   const [secondPoint, setSecondPoint] = useState<number>();
+  const [startHighlight, setStartHighlight] = useState<boolean>(false);
+  const [calculateInclination, setCalculateInclination] =
+    useState<boolean>(false);
+
+  console.log("1st and 2nd points", firstPoint, secondPoint);
 
   const setHoveredPoint = (chartState: CategoricalChartState) => {
     const hoveredLabel = Number(chartState.activeLabel);
@@ -50,8 +54,6 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
     const verticalDelta = Math.abs(endElevation - startElevation);
 
     const slope = (verticalDelta / horizontalDelta) * 100;
-
-    console.log(`slope: ${slope}`);
     return slope.toFixed(2);
   };
 
@@ -63,11 +65,18 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
           margin={{ top: 1, right: 1, left: 1, bottom: 30 }}
           onMouseMove={(e) => {
             setHoveredPoint(e);
+            startHighlight && setSecondPoint(Number(e.activeLabel));
+            startHighlight && setCalculateInclination(true);
           }}
           onMouseLeave={clearHoverPoint}
-          onMouseDown={(e) => setFirstPoint(Number(e.activeLabel))}
+          onMouseDown={(e) => {
+            setStartHighlight(true);
+            setFirstPoint(Number(e.activeLabel));
+            setCalculateInclination(false);
+          }}
           onMouseUp={(e) => {
-            firstPoint && setSecondPoint(Number(e.activeLabel));
+            calculateInclination && setSecondPoint(Number(e.activeLabel));
+            setStartHighlight(false);
           }}
         >
           <defs>
@@ -75,6 +84,7 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
               <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
               <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
             </linearGradient>
+            {/* TODO: use x2 x2 to draw a partial graph as highlight */}
             <linearGradient id="colorHighlight" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
               <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
@@ -98,15 +108,11 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
             fillOpacity={1}
             fill="url(#colorUv)"
           />
-          {secondPoint && (
+          {firstPoint && secondPoint && calculateInclination && (
             <ReferenceArea
               x1={firstPoint}
               x2={secondPoint}
-              label={`${
-                firstPoint &&
-                secondPoint &&
-                calculateSlope(firstPoint, secondPoint)
-              }% inclination`}
+              label={`${calculateSlope(firstPoint, secondPoint)}% inclination`}
             />
           )}
         </AreaChart>
