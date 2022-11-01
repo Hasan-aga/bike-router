@@ -95,10 +95,23 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
               value="Distance in meters"
               offset={-15}
               position="insideBottom"
+              style={{
+                textAnchor: "middle",
+                fontSize: "80%",
+                fill: "#8884d8",
+              }}
             />
           </XAxis>
           <YAxis dataKey="elevation">
-            <Label value="Elevation in meters" angle={-90} />
+            <Label
+              value="Elevation in meters"
+              angle={-90}
+              style={{
+                textAnchor: "middle",
+                fontSize: "80%",
+                fill: "#8884d8",
+              }}
+            />
           </YAxis>
           <Tooltip />
           <Area
@@ -112,7 +125,19 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
             <ReferenceArea
               x1={firstPoint}
               x2={secondPoint}
-              label={`${calculateSlope(firstPoint, secondPoint)}% inclination`}
+              label=<Label
+              value={`${calculateSlope(firstPoint, secondPoint)}% inclination`}
+              style={{
+                textAnchor: "middle",
+                fontSize: "90%",
+                fill: "#c3c2d8",
+              }}
+            />
+              style={{
+                textAnchor: "middle",
+                fontSize: "80%",
+                fill: "#8884d8",
+              }}
             />
           )}
         </AreaChart>
