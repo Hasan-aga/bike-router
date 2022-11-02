@@ -7,7 +7,7 @@ import "./dashboard.style.scss";
 const Dashboard = () => {
   const { path } = useContext(pathContext);
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${path ? "large" : ""}`}>
       <Sidemenu />
       {path && <ElevationChart pathData={path} />}
     </div>
