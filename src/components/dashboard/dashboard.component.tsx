@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 import { pathContext } from "../../contexts/path.context";
 import ElevationChart from "../elevationChart/elevationChart.component";
 import Sidemenu from "../sidemenu/sidemenu.component";
@@ -15,7 +16,11 @@ const Dashboard = () => {
       }}
     >
       <Sidemenu />
-      {path && transitionEnd && <ElevationChart pathData={path} />}
+      <CSSTransition in={Boolean(path)} timeout={2000} classNames="chart">
+        <div className="chart-container">
+          {path && transitionEnd && <ElevationChart pathData={path} />}
+        </div>
+      </CSSTransition>
     </div>
   );
 };

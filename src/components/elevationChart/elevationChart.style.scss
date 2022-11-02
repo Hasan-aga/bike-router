@@ -5,3 +5,22 @@
   height: 100%;
   width: 100%;
 }
+
+.chart-enter {
+  opacity: 0;
+  transform: translateX(-90%);
+}
+.chart-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms ease-in-out;
+}
+.chart-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.chart-exit-active {
+  opacity: 0;
+  transform: translateX(-90%);
+  transition: opacity 500ms, transform 500ms ease-in-out;
+}
