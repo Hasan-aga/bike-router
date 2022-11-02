@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  FormEventHandler,
-  useContext,
-  useState,
-} from "react";
+import { ChangeEvent, useContext } from "react";
 import { searchContext } from "../../contexts/search.context";
 import "./search.style.scss";
 

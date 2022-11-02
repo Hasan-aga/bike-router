@@ -5,10 +5,12 @@ import { searchContext } from "../../contexts/search.context";
 import { getCoordsFromName } from "../../utils/getCoordsFromName";
 import { LatLngExpression } from "leaflet";
 import UpdatedMap from "./updatedMap";
+import { pointContext } from "../../contexts/point.context";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
   const [coords, setCoords] = useState([52.3727598, 4.8936041]);
+  const { setPoints } = useContext(pointContext);
 
   useEffect(() => {
     const getCoords = async (location: string) => {
@@ -18,7 +20,8 @@ const Mapcontainer = () => {
     };
 
     getCoords(searchValue);
-  }, [searchValue]);
+    setPoints([]);
+  }, [searchValue, setPoints]);
 
   return (
     <MapContainer

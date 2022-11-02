@@ -37,9 +37,3 @@ export const PointProvider = ({ children }: Props) => {
     <pointContext.Provider value={value}>{children}</pointContext.Provider>
   );
 };
-
-// const testPoints: LatLngLiteral[] = [
-//   { lat: 47.569664, lng: 10.7021002 },
-//   { lat: 47.575734, lng: 10.720492 },
-// ];
-// getRoute(testPoints);
