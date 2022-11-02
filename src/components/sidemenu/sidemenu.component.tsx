@@ -8,14 +8,7 @@ const Sidemenu = () => {
 
   return (
     <div className="sidemenu scroll scroll-5">
-      <Search placeholder="Search.." />
-      {points.map((point) => (
-        <InfoCard
-          key={point.coords as any as string}
-          description={point.coords}
-          title={point.type}
-        />
-      ))}
+      <Search placeholder="Search location" />
     </div>
   );
 };

@@ -1,9 +1,13 @@
 .dashboard {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  height: 30%;
+  height: 10%;
   width: 100%;
   position: absolute;
   bottom: 0px;
   z-index: 1000;
+
+  .large {
+    height: 30%;
+  }
 }
