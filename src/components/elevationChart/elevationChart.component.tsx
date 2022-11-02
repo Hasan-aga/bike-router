@@ -14,9 +14,10 @@ import {
   ReferenceArea,
   Label,
 } from "recharts";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { chartPointContext } from "../../contexts/chart.context";
 import { CategoricalChartState } from "recharts/types/chart/generateCategoricalChart";
+import { inclinationContext } from "../../contexts/inclination.context";
 
 const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const chartData = calculateElevation(pathData);
@@ -27,9 +28,10 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const [startHighlight, setStartHighlight] = useState<boolean>(false);
   const [calculateInclination, setCalculateInclination] =
     useState<boolean>(false);
+    const { setInclination} = useContext(inclinationContext)
 
-
-  const setHoveredPoint = (chartState: CategoricalChartState) => {
+    
+    const setHoveredPoint = (chartState: CategoricalChartState) => {
     const hoveredLabel = Number(chartState.activeLabel);
     if (!hoveredLabel) return;
 
@@ -40,21 +42,32 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
     setChartPoint(undefined);
   };
 
-  const calculateSlope = (startPoint: number, endPoint: number) => {
+  const calculateSlope = useCallback((startXpoint: number, endXpoint: number)=>{
     const startElevation = chartData.find(
-      (element) => element.distance === startPoint
+      (element) => element.distance === startXpoint
     )?.elevation;
     const endElevation = chartData.find(
-      (element) => element.distance === endPoint
+      (element) => element.distance === endXpoint
     )?.elevation;
 
     if (!startElevation || !endElevation) return;
-    const horizontalDelta = Math.abs(endPoint - startPoint);
+    const horizontalDelta = Math.abs(endXpoint - startXpoint);
     const verticalDelta = Math.abs(endElevation - startElevation);
 
     const slope = (verticalDelta / horizontalDelta) * 100;
     return slope.toFixed(2);
-  };
+  },[])
+
+  useEffect(() => {
+    const endPoint = chartData.at(-1)?.distance
+    console.log("endPoint",endPoint);
+    endPoint && setInclination(Number(calculateSlope(0, endPoint)))
+  
+return function cleanUp(){setInclination(undefined)}
+  }, [chartData,calculateSlope,setInclination])
+  
+
+  
 
   return (
     <div className="elevation-chart">
@@ -63,7 +76,6 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
           data={chartData}
           margin={{ top: 1, right: 1, left: 1, bottom: 30 }}
           onMouseMove={(e) => {
-            console.log(startHighlight);
             
             setHoveredPoint(e);
             startHighlight && setSecondPoint(Number(e.activeLabel));

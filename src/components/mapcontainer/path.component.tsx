@@ -34,7 +34,7 @@ const Path = ({ points }: { points: Point[] }) => {
       setPath(results);
     };
     getPathData();
-  }, [points]);
+  }, [points, setPath]);
   return (
     <>
       {legs &&

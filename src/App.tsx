@@ -2,6 +2,7 @@ import "./App.scss";
 import Dashboard from "./components/dashboard/dashboard.component";
 import Mapcontainer from "./components/mapcontainer/mapcontainer.component";
 import { ChartPointProvider } from "./contexts/chart.context";
+import { InclinationProvider } from "./contexts/inclination.context";
 import { PathProvider } from "./contexts/path.context";
 
 import { PointProvider } from "./contexts/point.context";
@@ -14,8 +15,10 @@ function App() {
         <PointProvider>
           <PathProvider>
             <ChartPointProvider>
-              <Mapcontainer />
-              <Dashboard />
+              <InclinationProvider>
+                <Mapcontainer />
+                <Dashboard />
+              </InclinationProvider>
             </ChartPointProvider>
           </PathProvider>
         </PointProvider>
