@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const SearchProvider = ({ children }: Props) => {
-  const [searchValue, setSearchValue] = useState("amsterdam");
+  const [searchValue, setSearchValue] = useState("default");
   const value = { searchValue, setSearchValue };
 
   return (

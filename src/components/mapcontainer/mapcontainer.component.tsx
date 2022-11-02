@@ -18,8 +18,7 @@ const Mapcontainer = () => {
       if (!coords) throw new Error("no coordinates!");
       setCoords(coords);
     };
-
-    getCoords(searchValue);
+    if (searchValue !== "default") getCoords(searchValue);
     setPoints([]);
   }, [searchValue, setPoints]);
 
