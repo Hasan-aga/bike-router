@@ -13,11 +13,13 @@ import {
   Tooltip,
   ReferenceArea,
   Label,
+  TooltipProps,
 } from "recharts";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { chartPointContext } from "../../contexts/chart.context";
 import { CategoricalChartState } from "recharts/types/chart/generateCategoricalChart";
 import { inclinationContext } from "../../contexts/inclination.context";
+import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
 const ElevationChart = ({ pathData }: { pathData: Route }) => {
   const chartData = calculateElevation(pathData);
@@ -68,7 +70,19 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
 return function cleanUp(){setInclination(undefined)}
   }, [chartData,calculateSlope,setInclination])
   
-
+  const CustomTooltip = ({ active, payload, label }:TooltipProps<ValueType, NameType>) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip">
+          <p className="label">{`Elevation: ${payload[0].value}m`}</p>
+          <p className="intro">Distance: {label}m</p>
+        </div>
+      );
+    }
+  
+    return null;
+  };
+  
   
 
   return (
@@ -129,7 +143,7 @@ return function cleanUp(){setInclination(undefined)}
               }}
             />
           </YAxis>
-          <Tooltip />
+          <Tooltip content={<CustomTooltip/>} />
           <Area
             type="monotone"
             dataKey="elevation"
