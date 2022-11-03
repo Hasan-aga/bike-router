@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext } from "react";
 import { searchContext } from "../../contexts/search.context";
 import "./search.style.scss";
-
+import { FaSearchLocation } from "react-icons/fa";
 type searchProps = {
   placeholder: string;
 };
@@ -18,12 +18,17 @@ const Search = ({ placeholder }: searchProps) => {
 
   return (
     <form onSubmit={submitSearch}>
-      <input
-        className="searchInput"
-        type="text"
-        name="searcher"
-        placeholder={placeholder}
-      />
+      <div className="search-group">
+        <input
+          className="searchInput"
+          type="text"
+          name="searcher"
+          placeholder={placeholder}
+        />
+        <button type="submit">
+          <FaSearchLocation />
+        </button>
+      </div>
     </form>
   );
 };

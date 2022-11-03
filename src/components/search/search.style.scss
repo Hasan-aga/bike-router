@@ -2,7 +2,34 @@
   width: 100%;
   padding: 10px 20px;
   border: none;
+
+  font-size: 17px;
+}
+
+.search-group {
+  display: flex;
+  width: 100%;
   margin-top: 8px;
   margin-bottom: 16px;
-  font-size: 17px;
+  button {
+    border: none;
+    border-left: solid #8884d8 2px;
+    background-color: white;
+    width: fit-content;
+    padding: 5px 10px;
+    height: auto;
+    &:hover {
+      cursor: pointer;
+      background-color: #8884d8;
+    }
+
+    &:hover svg {
+      color: #f7f7f7;
+    }
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+    color: #8884d8;
+  }
 }
