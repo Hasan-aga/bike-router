@@ -9,6 +9,7 @@ import { pointContext } from "../../contexts/point.context";
 import Control from "react-leaflet-custom-control";
 import { MdOutlineCropFree } from "react-icons/md";
 import MapButton from "../mapButton/mapButton.component";
+import { GoTrashcan } from "react-icons/go";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -28,6 +29,9 @@ const Mapcontainer = () => {
   const resetZoomLevel = (mapRef: Map) => {
     mapRef.setZoom(13);
   };
+  const removeMarkers = (mapRef: Map) => {
+    setPoints([]);
+  };
 
   return (
     <MapContainer
@@ -46,8 +50,8 @@ const Mapcontainer = () => {
         <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
           <MdOutlineCropFree />
         </MapButton>
-        <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
-          <MdOutlineCropFree />
+        <MapButton onClickCallback={removeMarkers} title="Remove all markers">
+          <GoTrashcan />
         </MapButton>
       </Control>
     </MapContainer>

@@ -1,5 +1,5 @@
 import { Map } from "leaflet";
-import { FC, MouseEvent, MouseEventHandler, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { useMap } from "react-leaflet";
 import "./mapButton.style.scss";
 
@@ -16,6 +16,7 @@ const MapButton: FC<Props> = ({ title, children, onClickCallback }) => {
       title={title}
       className="map-button"
       onClick={(e) => {
+        e.stopPropagation();
         onClickCallback(mapRef);
       }}
     >
