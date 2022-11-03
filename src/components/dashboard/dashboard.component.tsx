@@ -20,17 +20,19 @@ const Dashboard = () => {
       }}
     >
       <Sidemenu />
-      <button
-        title={`${
-          dashboardIsVisible ? "Hide the dashboard" : "Unhide the dashboard"
-        }`}
-        className="toggle"
-        onClick={() => {
-          setDashboardIsVisible(!dashboardIsVisible);
-        }}
-      >
-        {path && (dashboardIsVisible ? <FiEyeOff /> : <FiEye />)}
-      </button>
+      {path && (
+        <button
+          title={`${
+            dashboardIsVisible ? "Hide the dashboard" : "Unhide the dashboard"
+          }`}
+          className="toggle"
+          onClick={() => {
+            setDashboardIsVisible(!dashboardIsVisible);
+          }}
+        >
+          {path && (dashboardIsVisible ? <FiEyeOff /> : <FiEye />)}
+        </button>
+      )}
       <CSSTransition in={Boolean(path)} timeout={2000} classNames="chart">
         <div className={`chart-container `}>
           {path && transitionEnd && <ElevationChart pathData={path} />}

@@ -23,7 +23,7 @@
     border: 2px solid black;
     background-color: #8884d8;
     color: black;
-    transition: all 200ms linear;
+    transition: all 200ms ease-in-out;
     &:hover {
       cursor: pointer;
     }
