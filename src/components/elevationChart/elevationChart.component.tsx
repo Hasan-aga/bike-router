@@ -54,13 +54,15 @@ const ElevationChart = ({ pathData }: { pathData: Route }) => {
     const horizontalDelta = Math.abs(endXpoint - startXpoint);
     const verticalDelta = Math.abs(endElevation - startElevation);
 
+    // console.log(`startx: ${startXpoint} endx:${endXpoint} startElevation:${startElevation} endElevation:${endElevation}`);
+    
+
     const slope = (verticalDelta / horizontalDelta) * 100;
     return slope.toFixed(2);
-  },[])
+  },[chartData])
 
   useEffect(() => {
     const endPoint = chartData.at(-1)?.distance
-    console.log("endPoint",endPoint);
     endPoint && setInclination(Number(calculateSlope(0, endPoint)))
   
 return function cleanUp(){setInclination(undefined)}

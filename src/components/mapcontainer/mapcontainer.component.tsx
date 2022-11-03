@@ -27,7 +27,7 @@ const Mapcontainer = () => {
       className="mapcontainer"
       center={coords as LatLngExpression}
       zoom={13}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
