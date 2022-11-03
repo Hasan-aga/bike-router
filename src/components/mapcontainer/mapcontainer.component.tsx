@@ -1,9 +1,9 @@
 import "./mapcontainer.style.scss";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import { useContext, useEffect, useState } from "react";
 import { searchContext } from "../../contexts/search.context";
 import { getCoordsFromName } from "../../utils/getCoordsFromName";
-import { LatLngExpression } from "leaflet";
+import { LatLngExpression, Map } from "leaflet";
 import UpdatedMap from "./updatedMap";
 import { pointContext } from "../../contexts/point.context";
 import Control from "react-leaflet-custom-control";
@@ -25,6 +25,10 @@ const Mapcontainer = () => {
     setPoints([]);
   }, [searchValue, setPoints]);
 
+  const resetZoomLevel = (mapRef: Map) => {
+    mapRef.setZoom(13);
+  };
+
   return (
     <MapContainer
       className="mapcontainer"
@@ -39,7 +43,10 @@ const Mapcontainer = () => {
 
       <UpdatedMap coords={coords} />
       <Control prepend position="topleft">
-        <MapButton>
+        <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
+          <MdOutlineCropFree />
+        </MapButton>
+        <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
           <MdOutlineCropFree />
         </MapButton>
       </Control>
