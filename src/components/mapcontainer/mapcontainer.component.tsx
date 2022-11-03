@@ -10,6 +10,7 @@ import Control from "react-leaflet-custom-control";
 import { MdOutlineCropFree } from "react-icons/md";
 import MapButton from "../mapButton/mapButton.component";
 import { GoTrashcan } from "react-icons/go";
+import Stack from "../stack/stack.component";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -47,12 +48,14 @@ const Mapcontainer = () => {
 
       <UpdatedMap coords={coords} />
       <Control prepend position="topleft">
-        <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
-          <MdOutlineCropFree />
-        </MapButton>
-        <MapButton onClickCallback={removeMarkers} title="Remove all markers">
-          <GoTrashcan />
-        </MapButton>
+        <Stack>
+          <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
+            <MdOutlineCropFree />
+          </MapButton>
+          <MapButton onClickCallback={removeMarkers} title="Remove all markers">
+            <GoTrashcan />
+          </MapButton>
+        </Stack>
       </Control>
     </MapContainer>
   );
