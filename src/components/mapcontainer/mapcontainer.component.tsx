@@ -7,9 +7,8 @@ import { LatLngExpression, Map } from "leaflet";
 import UpdatedMap from "./updatedMap";
 import { pointContext } from "../../contexts/point.context";
 import Control from "react-leaflet-custom-control";
-import { MdOutlineCropFree } from "react-icons/md";
 import MapButton from "../mapButton/mapButton.component";
-import { GoTrashcan } from "react-icons/go";
+import { TfiArrowsCorner, TfiTrash } from "react-icons/tfi";
 import Stack from "../stack/stack.component";
 
 const Mapcontainer = () => {
@@ -50,10 +49,10 @@ const Mapcontainer = () => {
       <Control prepend position="topleft">
         <Stack>
           <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
-            <MdOutlineCropFree />
+            <TfiArrowsCorner />
           </MapButton>
           <MapButton onClickCallback={removeMarkers} title="Remove all markers">
-            <GoTrashcan />
+            <TfiTrash />
           </MapButton>
         </Stack>
       </Control>
