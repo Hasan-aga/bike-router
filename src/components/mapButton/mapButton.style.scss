@@ -1,0 +1,18 @@
+.map-button {
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  padding-bottom: 2px;
+  height: auto;
+  width: auto;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f7f7f7;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}

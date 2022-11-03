@@ -6,6 +6,9 @@ import { getCoordsFromName } from "../../utils/getCoordsFromName";
 import { LatLngExpression } from "leaflet";
 import UpdatedMap from "./updatedMap";
 import { pointContext } from "../../contexts/point.context";
+import Control from "react-leaflet-custom-control";
+import { MdOutlineCropFree } from "react-icons/md";
+import MapButton from "../mapButton/mapButton.component";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -35,6 +38,11 @@ const Mapcontainer = () => {
       />
 
       <UpdatedMap coords={coords} />
+      <Control prepend position="topleft">
+        <MapButton>
+          <MdOutlineCropFree />
+        </MapButton>
+      </Control>
     </MapContainer>
   );
 };
