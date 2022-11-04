@@ -2,7 +2,7 @@ name: Testing the project
 run-name: ${{ github.actor }} is testing the project🚀
 on: [push]
 jobs:
-  Install and test:
+  install-and-test:
     runs-on: ubuntu-latest
     env:
       CI: true
