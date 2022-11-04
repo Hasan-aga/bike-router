@@ -9,8 +9,6 @@ jobs:
       - name: Checkout🎯
         uses: actions/checkout@v2
 
-      - name: Run the project💨
-        run: yarn start
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run💨
