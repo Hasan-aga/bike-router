@@ -2,18 +2,11 @@ name: Testing the project
 run-name: ${{ github.actor }} is testing the project🚀
 on: [push]
 jobs:
-  install-and-test:
+  install:
     runs-on: ubuntu-latest
     env:
       CI: true
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Set up Node.js ⚙️
         uses: actions/setup-node@v2
         with:
@@ -21,3 +14,11 @@ jobs:
 
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
+
+  test:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Test the project
+        run: yarn test
