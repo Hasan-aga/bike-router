@@ -14,5 +14,6 @@ jobs:
 
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
-      - name: Test the project
+      - name: Test the project :test_tube:
+        cmd: pwd
         run: yarn test
