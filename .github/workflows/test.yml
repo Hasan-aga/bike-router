@@ -18,8 +18,8 @@ jobs:
       - name: Install dependencies 📦
         run: yarn install
 
-      - name: List dir content
+      - name: List dir content 🌲
         run: ls -la
 
-      - name: Test the project
+      - name: Test the project 🧪
         run: yarn test
