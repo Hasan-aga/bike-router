@@ -14,6 +14,7 @@ jobs:
 
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
+      - name: Build project :rescue_worker_helmet:
+        run: yarn build
       - name: Test the project :test_tube:
-        cmd: pwd
         run: yarn test
