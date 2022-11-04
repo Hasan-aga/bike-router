@@ -26,10 +26,14 @@ describe("testing map", () => {
     map.click({ position: "top" });
     cy.findByRole("button", { name: /set as end/i }).click();
     const chart = cy.get(".elevation-chart");
+    chart.should("be.visible");
     const slope = cy.findByText(/average inclination:/i);
+    slope.should("be.visible");
     chart
-      .trigger("mousedown", { which: 1 })
-      .trigger("mousemove", { pageX: 400, pageY: 800 })
+      .trigger("mousedown", { which: 1, x: 250, y: 20 })
+      .trigger("mousemove", { x: 500, y: 20 })
       .trigger("mouseup", { force: true });
+
+    cy.log(chart);
   });
 });
