@@ -14,6 +14,8 @@ jobs:
 
       - name: Install dependencies 📦
         run: yarn install
+      - name: List dir content
+        run: ls -la
       - name: Build project
         run: yarn build
       - name: Test the project
