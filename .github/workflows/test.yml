@@ -2,7 +2,7 @@ name: Testing the project
 run-name: ${{ github.actor }} is testing the project🚀
 on: [push]
 jobs:
-  install:
+  Install and test:
     runs-on: ubuntu-latest
     env:
       CI: true
@@ -14,11 +14,5 @@ jobs:
 
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
-
-  test:
-    runs-on: ubuntu-latest
-    env:
-      CI: true
-    steps:
       - name: Test the project
         run: yarn test
