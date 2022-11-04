@@ -16,4 +16,6 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Installing dependencies
       - uses: borales/actions-yarn@v3.0.0
-        run: yarn
+        with:
+          cmd: install
+        run: echo "installing dependencies..."
