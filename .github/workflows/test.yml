@@ -13,7 +13,7 @@ jobs:
           node-version: "16.x"
 
       - name: Install dependencies 📦
-        run: yarn install --frozen-lockfile
+        run: yarn install
       - name: Build project
         run: yarn build
       - name: Test the project
