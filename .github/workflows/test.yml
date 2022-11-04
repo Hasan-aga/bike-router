@@ -7,7 +7,7 @@ jobs:
     env:
       CI: true
     steps:
-      - name: Clone repo
+      - name: Clone repo 🎯
         uses: actions/checkout@v2
 
       - name: Set up Node.js ⚙️
