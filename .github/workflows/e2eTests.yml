@@ -4,14 +4,14 @@ jobs:
   cypress-run:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
+      - name: Checkout🎯
         uses: actions/checkout@v2
 
-      - name: Run the project
+      - name: Run the project💨
         uses: yarn start
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Cypress run
+      - name: Cypress run💨
         uses: cypress-io/github-action@v4
         with:
           build: yarn build
