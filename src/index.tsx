@@ -4,6 +4,12 @@ import "./index";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+if (process.env.NODE_ENV === "production") {
+  console.log = () => {};
+  console.error = () => {};
+  console.debug = () => {};
+}
+
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("there is no element with id `root`!");
 const root = ReactDOM.createRoot(rootElement);
