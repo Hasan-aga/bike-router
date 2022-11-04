@@ -2,6 +2,8 @@ name: End-to-end tests
 on: [push]
 jobs:
   cypress-run:
+    env:
+      REACT_APP_API_KEY: "49312e5ae28f46bb9acf6b2bb2614291"
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout🎯
