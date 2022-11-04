@@ -13,12 +13,18 @@ jobs:
         with:
           cmd: install # will run `yarn install` command
   build:
+    env:
+      CI: true
+    runs-on: ubuntu-latest
     steps:
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: build # will run `yarn build` command
 
   test:
+    env:
+      CI: true
+    runs-on: ubuntu-latest
     steps:
       - name: run tests
       - uses: borales/actions-yarn@v3.0.0
