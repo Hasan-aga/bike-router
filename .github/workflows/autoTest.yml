@@ -3,20 +3,23 @@ on:
   push:
     branches: [master]
 jobs:
-  build:
+  install:
     env:
       CI: true
     runs-on: ubuntu-latest
     steps:
-      - name: install dependencies
       - uses: actions/checkout@v2
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: install # will run `yarn install` command
-      - name: build
+  build:
+    steps:
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: build # will run `yarn build` command
+
+  test:
+    steps:
       - name: run tests
       - uses: borales/actions-yarn@v3.0.0
         with:
