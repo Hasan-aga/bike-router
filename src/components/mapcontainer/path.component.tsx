@@ -1,5 +1,5 @@
 import { LatLngExpression, LatLngLiteral } from "leaflet";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Polyline } from "react-leaflet";
 import { pathContext } from "../../contexts/path.context";
 import { Point } from "../../contexts/point.context";

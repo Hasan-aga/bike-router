@@ -11,9 +11,6 @@ interface Props {
   setTemporaryPoint: React.Dispatch<React.SetStateAction<Point | undefined>>;
 }
 
-const startPointExists = (points: Point[]): boolean =>
-  points.find((p) => p.type === "start") !== undefined;
-
 const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
   const popupRef = useRef<LeafletPopup>(null);
   const { points } = useContext(pointContext);
@@ -107,8 +104,6 @@ const Popmenu = ({ map, point, setTemporaryPoint }: Props) => {
       )}
     </Popup>
   );
-
-  
 };
 
 export default Popmenu;

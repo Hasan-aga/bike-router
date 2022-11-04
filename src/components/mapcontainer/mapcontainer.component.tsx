@@ -1,5 +1,5 @@
 import "./mapcontainer.style.scss";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { useContext, useEffect, useState } from "react";
 import { searchContext } from "../../contexts/search.context";
 import { getCoordsFromName } from "../../utils/getCoordsFromName";

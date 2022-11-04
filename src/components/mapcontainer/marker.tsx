@@ -1,4 +1,4 @@
-import { LatLngLiteral, Map } from "leaflet";
+import { Map } from "leaflet";
 import { Marker } from "react-leaflet";
 import { Point } from "../../contexts/point.context";
 import Popmenu from "./popup.component";
