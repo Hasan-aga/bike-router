@@ -1,5 +1,3 @@
-import { createYield } from "typescript";
-
 describe("testing map", () => {
   it("can search for location", () => {
     cy.visit("http://localhost:3000/");
