@@ -7,7 +7,7 @@ jobs:
     env:
       CI: true
     steps:
-      - name: Clone repo :robot:
+      - name: Clone repo
         uses: actions/checkout@v2
 
       - name: Set up Node.js ⚙️
@@ -18,8 +18,8 @@ jobs:
       - name: Install dependencies 📦
         run: yarn install
 
-      - name: List dir content :evergreen_tree:
+      - name: List dir content
         run: ls -la
 
-      - name: Test the project :test_tube:
+      - name: Test the project
         run: yarn test
