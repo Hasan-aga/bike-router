@@ -9,17 +9,8 @@ jobs:
       - name: Checkout🎯
         uses: actions/checkout@v2
 
-      - name: Set up Node.js ⚙️
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16.x"
-
-      - name: Install dependencies 📦
-        run: yarn install
-
       - name: Run the project💨
         run: yarn start
-
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run💨
