@@ -3,6 +3,8 @@
 ![tests workflow](https://github.com/hasan-aga/bike-router/actions/workflows/test.yml/badge.svg)
 [![End-to-end tests](https://github.com/Hasan-aga/bike-router/actions/workflows/e2eTests.yml/badge.svg?branch=master)](https://github.com/Hasan-aga/bike-router/actions/workflows/e2eTests.yml)
 
+Live demo: [biker.hasan.one](https://biker.hasan.one/)
+
 This tool will help you plan a cycling route. Simply pick two points on a map and the best path between them will be calculated and displayed on the map.
 ![example usecase](./assets/bike-demo.gif)
 
