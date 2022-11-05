@@ -3,7 +3,7 @@ on: [push]
 jobs:
   cypress-run:
     env:
-      REACT_APP_API_KEY: "49312e5ae28f46bb9acf6b2bb2614291"
+      REACT_APP_API_KEY: ${{secrets.APIKEY}}
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout🎯
