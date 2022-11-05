@@ -28,6 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\"",
+    "cy": "cypress run --spec cypress/e2e/spec.cy.ts",
+    "e2e": "BROWSER=none start-server-and-test start http://localhost:3000 cy",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -52,6 +54,7 @@
     "@testing-library/cypress": "^8.0.3",
     "@types/leaflet": "^1.9.0",
     "@types/react-transition-group": "^4.4.5",
-    "cypress": "^10.11.0"
+    "cypress": "^10.11.0",
+    "start-server-and-test": "^1.14.0"
   }
 }
