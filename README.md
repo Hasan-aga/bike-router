@@ -5,7 +5,7 @@
 This tool will help you plan a cycling route. Simply pick two points on a map and the best path between them will be calculated and displayed on the map.
 ![example usecase](./assets/bike-demo.gif)
 
-An elevation chart will also be displayed which to help you visualize the diffeculty of the path. You can click and drag on the chart to calculated the inclination percentage between any two points.
+An elevation chart will also be displayed which will help you visualize the diffeculty of the path. You can click and drag on the chart to calculated the inclination percentage between any two points.
 ![example usecase](./assets/bike-demo2.gif)
 
 Hovering over the chart will render a marker at the coresponding location on the path.
