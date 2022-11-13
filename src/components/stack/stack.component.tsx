@@ -10,6 +10,7 @@ const Stack = ({ children, direction = "vertical" }: Props) => {
     <div
       style={{
         display: "flex",
+        alignItems: "flex-start",
         flexDirection: direction === "vertical" ? "column" : "row",
       }}
     >

@@ -59,12 +59,14 @@ const Mapcontainer = () => {
       <UpdatedMap coords={coords} />
       <Control prepend position="topleft">
         <Stack>
-          <MapButton onClickCallback={viewSearchbar} title="Search location">
-            {searchIsVisible ? <TfiAngleDoubleLeft /> : <TfiSearch />}
+          <Stack direction="horizontal">
+            <MapButton onClickCallback={viewSearchbar} title="Search location">
+              {searchIsVisible ? <TfiAngleDoubleLeft /> : <TfiSearch />}
+            </MapButton>
             {searchIsVisible && (
               <Search placeholder="search location" SearchIcon={TfiSearch} />
             )}
-          </MapButton>
+          </Stack>
           <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
             <TfiArrowsCorner />
           </MapButton>
