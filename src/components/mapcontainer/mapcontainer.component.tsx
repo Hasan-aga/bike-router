@@ -10,7 +10,7 @@ import Control from "react-leaflet-custom-control";
 import MapButton from "../mapButton/mapButton.component";
 import { TfiArrowsCorner, TfiTrash, TfiSearch } from "react-icons/tfi";
 import Stack from "../stack/stack.component";
-import Sidemenu from "../sidemenu/sidemenu.component";
+import Search from "../search/search.component";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -56,7 +56,9 @@ const Mapcontainer = () => {
         <Stack>
           <MapButton onClickCallback={viewSearchbar} title="Search location">
             <TfiSearch />
-            {searchIsVisible && <Sidemenu />}
+            {searchIsVisible && (
+              <Search placeholder="search location" SearchIcon={TfiSearch} />
+            )}
           </MapButton>
           <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
             <TfiArrowsCorner />

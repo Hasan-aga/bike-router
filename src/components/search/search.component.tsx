@@ -2,11 +2,13 @@ import { ChangeEvent, useContext } from "react";
 import { searchContext } from "../../contexts/search.context";
 import "./search.style.scss";
 import { FaSearchLocation } from "react-icons/fa";
+import { IconType } from "react-icons";
 type searchProps = {
   placeholder: string;
+  SearchIcon?: IconType;
 };
 
-const Search = ({ placeholder }: searchProps) => {
+const Search = ({ placeholder, SearchIcon }: searchProps) => {
   const { setSearchValue } = useContext(searchContext);
 
   const submitSearch = (event: ChangeEvent<HTMLFormElement>) => {
@@ -26,7 +28,7 @@ const Search = ({ placeholder }: searchProps) => {
           placeholder={placeholder}
         />
         <button type="submit">
-          <FaSearchLocation />
+          {SearchIcon ? <SearchIcon /> : <FaSearchLocation />}
         </button>
       </div>
     </form>
