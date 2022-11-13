@@ -8,7 +8,12 @@ import UpdatedMap from "./updatedMap";
 import { pointContext } from "../../contexts/point.context";
 import Control from "react-leaflet-custom-control";
 import MapButton from "../mapButton/mapButton.component";
-import { TfiArrowsCorner, TfiTrash, TfiSearch } from "react-icons/tfi";
+import {
+  TfiArrowsCorner,
+  TfiTrash,
+  TfiSearch,
+  TfiAngleDoubleLeft,
+} from "react-icons/tfi";
 import Stack from "../stack/stack.component";
 import Search from "../search/search.component";
 
@@ -55,7 +60,7 @@ const Mapcontainer = () => {
       <Control prepend position="topleft">
         <Stack>
           <MapButton onClickCallback={viewSearchbar} title="Search location">
-            <TfiSearch />
+            {searchIsVisible ? <TfiAngleDoubleLeft /> : <TfiSearch />}
             {searchIsVisible && (
               <Search placeholder="search location" SearchIcon={TfiSearch} />
             )}
