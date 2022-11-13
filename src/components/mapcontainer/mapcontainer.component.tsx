@@ -8,13 +8,14 @@ import UpdatedMap from "./updatedMap";
 import { pointContext } from "../../contexts/point.context";
 import Control from "react-leaflet-custom-control";
 import MapButton from "../mapButton/mapButton.component";
-import { TfiArrowsCorner, TfiTrash } from "react-icons/tfi";
+import { TfiArrowsCorner, TfiTrash, TfiSearch } from "react-icons/tfi";
 import Stack from "../stack/stack.component";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
   const [coords, setCoords] = useState([52.3727598, 4.8936041]);
   const { setPoints } = useContext(pointContext);
+  const [searchIsVisible, setSearchIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const getCoords = async (location: string) => {
@@ -26,10 +27,14 @@ const Mapcontainer = () => {
     setPoints([]);
   }, [searchValue, setPoints]);
 
+  const viewSearchbar = () => {
+    setSearchIsVisible(!searchIsVisible);
+  };
+
   const resetZoomLevel = (mapRef: Map) => {
     mapRef.setZoom(13);
   };
-  const removeMarkers = (mapRef: Map) => {
+  const removeMarkers = () => {
     setPoints([]);
   };
 
@@ -48,6 +53,9 @@ const Mapcontainer = () => {
       <UpdatedMap coords={coords} />
       <Control prepend position="topleft">
         <Stack>
+          <MapButton onClickCallback={viewSearchbar} title="Search location">
+            <TfiSearch />
+          </MapButton>
           <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
             <TfiArrowsCorner />
           </MapButton>
