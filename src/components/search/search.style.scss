@@ -1,21 +1,18 @@
 .searchInput {
-  width: 100%;
-  padding: 1px 20px;
+  padding: 0.1rem 1.5rem;
   border: none;
-
-  font-size: 17px;
+  font-size: 1rem;
 }
 
 .search-group {
+  height: 100%;
   display: flex;
-  width: 100%;
+  align-items: stretch;
   button {
     border: none;
     border-left: solid #8884d8 2px;
     background-color: white;
     width: fit-content;
-    padding: 5px 10px;
-    height: auto;
     &:hover {
       cursor: pointer;
       background-color: #8884d8;
@@ -26,8 +23,6 @@
     }
   }
   svg {
-    width: 24px;
-    height: 24px;
     color: #8884d8;
   }
 }
