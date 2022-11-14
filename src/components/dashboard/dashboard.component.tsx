@@ -13,7 +13,7 @@ const Dashboard = () => {
   return (
     <div
       className={`dashboard ${path ? "large" : ""} ${
-        dashboardIsVisible ? "" : "invisible"
+        dashboardIsVisible && "invisible"
       }`}
       onTransitionEnd={() => {
         setTransitionEnd(Boolean(path));

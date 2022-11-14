@@ -37,6 +37,8 @@
 
 .invisible {
   visibility: collapse;
+  pointer-events: none;
+  height: 0px;
   .toggle {
     top: 20rem;
     border: 0.2rem solid black;
