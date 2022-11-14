@@ -23,7 +23,7 @@ const Dashboard = () => {
       {path && (
         <button
           title={`${
-            dashboardIsVisible ? "Hide the dashboard" : "Unhide the dashboard"
+            dashboardIsVisible ? "Hide the dashboard" : "Show the dashboard"
           }`}
           className="toggle"
           onClick={() => {

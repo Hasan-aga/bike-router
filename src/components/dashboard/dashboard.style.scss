@@ -15,8 +15,8 @@
     z-index: 1000;
     visibility: visible !important;
     position: absolute;
-    right: 5px;
-    top: 15px;
+    left: 5px;
+    top: 2px;
     padding: 2px 5px;
     border: 2px solid black;
     background-color: #8884d8;
@@ -43,4 +43,23 @@
     background-color: #fff;
     color: black;
   }
+}
+
+.chart-enter {
+  opacity: 0;
+  transform: translateX(-90%);
+}
+.chart-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms ease-in-out;
+}
+.chart-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.chart-exit-active {
+  opacity: 0;
+  transform: translateX(-90%);
+  transition: opacity 500ms, transform 500ms ease-in-out;
 }
