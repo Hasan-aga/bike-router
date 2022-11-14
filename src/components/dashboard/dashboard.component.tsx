@@ -40,6 +40,7 @@ const Dashboard = () => {
         nodeRef={chartRef}
       >
         <div className={`chart-container `} ref={chartRef}>
+          {/* TODO: to create exit transition we can create empty chart */}
           {path && transitionEnd && <ElevationChart pathData={path} />}
         </div>
       </CSSTransition>
