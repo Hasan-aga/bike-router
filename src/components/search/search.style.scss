@@ -31,3 +31,22 @@
     color: #8884d8;
   }
 }
+
+.search-transition-enter {
+  opacity: 0;
+  transform: translateX(-90px);
+}
+.search-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms ease-in-out;
+}
+.search-transition-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.search-transition-exit-active {
+  opacity: 0;
+  transform: translateX(-90px);
+  transition: opacity 500ms, transform 500ms ease-in-out;
+}

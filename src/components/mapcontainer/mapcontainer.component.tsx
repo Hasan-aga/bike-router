@@ -1,6 +1,6 @@
 import "./mapcontainer.style.scss";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { searchContext } from "../../contexts/search.context";
 import { getCoordsFromName } from "../../utils/getCoordsFromName";
 import { LatLngExpression, Map } from "leaflet";
@@ -16,12 +16,14 @@ import {
 } from "react-icons/tfi";
 import Stack from "../stack/stack.component";
 import Search from "../search/search.component";
+import { CSSTransition } from "react-transition-group";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
   const [coords, setCoords] = useState([52.3727598, 4.8936041]);
   const { setPoints } = useContext(pointContext);
   const [searchIsVisible, setSearchIsVisible] = useState<boolean>(false);
+  const searchbarRef = useRef(null);
 
   useEffect(() => {
     const getCoords = async (location: string) => {
@@ -33,7 +35,7 @@ const Mapcontainer = () => {
     setPoints([]);
   }, [searchValue, setPoints]);
 
-  const viewSearchbar = () => {
+  const toggleSearchbar = () => {
     setSearchIsVisible(!searchIsVisible);
   };
 
@@ -60,12 +62,27 @@ const Mapcontainer = () => {
       <Control prepend position="topleft">
         <Stack>
           <Stack direction="horizontal">
-            <MapButton onClickCallback={viewSearchbar} title="Search location">
+            <MapButton
+              onClickCallback={toggleSearchbar}
+              title="Search location"
+            >
               {searchIsVisible ? <TfiAngleDoubleLeft /> : <TfiSearch />}
             </MapButton>
-            {searchIsVisible && (
-              <Search placeholder="search location" SearchIcon={TfiSearch} />
-            )}
+            <CSSTransition
+              in={searchIsVisible}
+              timeout={200}
+              classNames="search-transition"
+              nodeRef={searchbarRef}
+            >
+              <div className="search-wrapper" ref={searchbarRef}>
+                {searchIsVisible && (
+                  <Search
+                    placeholder="search location"
+                    SearchIcon={TfiSearch}
+                  />
+                )}
+              </div>
+            </CSSTransition>
           </Stack>
           <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
             <TfiArrowsCorner />
