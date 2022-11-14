@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { pathContext } from "../../contexts/path.context";
 import ElevationChart from "../elevationChart/elevationChart.component";
@@ -10,6 +10,7 @@ const Dashboard = () => {
   const { path } = useContext(pathContext);
   const [transitionEnd, setTransitionEnd] = useState<boolean>(false);
   const [dashboardIsVisible, setDashboardIsVisible] = useState<boolean>(true);
+  const chartRef = useRef(null);
   return (
     <div
       className={`dashboard ${path ? "large" : ""} ${
@@ -19,7 +20,6 @@ const Dashboard = () => {
         setTransitionEnd(Boolean(path));
       }}
     >
-      <Sidemenu />
       {path && (
         <button
           title={`${
@@ -33,8 +33,13 @@ const Dashboard = () => {
           {path && (dashboardIsVisible ? <FiEyeOff /> : <FiEye />)}
         </button>
       )}
-      <CSSTransition in={Boolean(path)} timeout={2000} classNames="chart">
-        <div className={`chart-container `}>
+      <CSSTransition
+        in={Boolean(path)}
+        timeout={2000}
+        classNames="chart"
+        nodeRef={chartRef}
+      >
+        <div className={`chart-container `} ref={chartRef}>
           {path && transitionEnd && <ElevationChart pathData={path} />}
         </div>
       </CSSTransition>
