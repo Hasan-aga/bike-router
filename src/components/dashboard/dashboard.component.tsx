@@ -2,7 +2,6 @@ import { useContext, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { pathContext } from "../../contexts/path.context";
 import ElevationChart from "../elevationChart/elevationChart.component";
-import Sidemenu from "../sidemenu/sidemenu.component";
 import "./dashboard.style.scss";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 
