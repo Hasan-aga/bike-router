@@ -68,21 +68,12 @@ const Mapcontainer = () => {
             >
               {searchIsVisible ? <TfiAngleDoubleLeft /> : <TfiSearch />}
             </MapButton>
-            <CSSTransition
-              in={searchIsVisible}
-              timeout={200}
-              classNames="search-transition"
-              nodeRef={searchbarRef}
-            >
-              <div className="search-wrapper" ref={searchbarRef}>
-                {searchIsVisible && (
-                  <Search
-                    placeholder="search location"
-                    SearchIcon={TfiSearch}
-                  />
-                )}
-              </div>
-            </CSSTransition>
+
+            <div className="search-wrapper" ref={searchbarRef}>
+              {searchIsVisible && (
+                <Search placeholder="search location" SearchIcon={TfiSearch} />
+              )}
+            </div>
           </Stack>
           <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
             <TfiArrowsCorner />

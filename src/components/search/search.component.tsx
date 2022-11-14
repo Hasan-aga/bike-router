@@ -6,9 +6,10 @@ import { IconType } from "react-icons";
 type searchProps = {
   placeholder: string;
   SearchIcon?: IconType;
+  className?: string;
 };
 
-const Search = ({ placeholder, SearchIcon }: searchProps) => {
+const Search = ({ placeholder, SearchIcon, className }: searchProps) => {
   const { setSearchValue } = useContext(searchContext);
 
   const submitSearch = (event: ChangeEvent<HTMLFormElement>) => {
@@ -20,7 +21,7 @@ const Search = ({ placeholder, SearchIcon }: searchProps) => {
 
   return (
     <form onSubmit={submitSearch}>
-      <div className="search-group">
+      <div className={`search-group ${className}`}>
         <input
           className="searchInput"
           type="text"

@@ -11,3 +11,18 @@
 .leaflet-container {
   font-family: "Work Sans";
 }
+
+.visible {
+  pointer-events: all;
+
+  visibility: visible;
+  opacity: 1;
+  transition: all 200ms ease-in-out;
+}
+
+.invisible {
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 200ms ease-in-out;
+}
