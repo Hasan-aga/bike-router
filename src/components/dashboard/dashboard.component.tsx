@@ -12,8 +12,8 @@ const Dashboard = () => {
   const chartRef = useRef(null);
   return (
     <div
-      className={`dashboard ${path ? "large" : ""} ${
-        dashboardIsVisible && "invisible"
+      className={`dashboard ${path ? "large" : "invisible"} ${
+        dashboardIsVisible ? "" : "invisible"
       }`}
       onTransitionEnd={() => {
         setTransitionEnd(Boolean(path));
