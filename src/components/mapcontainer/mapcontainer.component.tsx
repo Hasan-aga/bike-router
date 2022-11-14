@@ -16,7 +16,6 @@ import {
 } from "react-icons/tfi";
 import Stack from "../stack/stack.component";
 import Search from "../search/search.component";
-import { CSSTransition } from "react-transition-group";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
