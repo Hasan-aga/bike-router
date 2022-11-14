@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { pathContext } from "../../contexts/path.context";
 import ElevationChart from "../elevationChart/elevationChart.component";
@@ -10,6 +10,12 @@ const Dashboard = () => {
   const [transitionEnd, setTransitionEnd] = useState<boolean>(false);
   const [dashboardIsVisible, setDashboardIsVisible] = useState<boolean>(true);
   const chartRef = useRef(null);
+  useEffect(() => {
+    if (!path) {
+      setDashboardIsVisible(true);
+    }
+  }, [path, setDashboardIsVisible]);
+
   return (
     <div
       className={`dashboard ${path ? "large" : "invisible"} ${
