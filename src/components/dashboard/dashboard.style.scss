@@ -14,11 +14,11 @@
   .toggle {
     z-index: 1000;
     visibility: visible !important;
-    position: absolute;
-    left: 0.5rem;
-    top: 0.5rem;
+    position: fixed;
+    left: 5px;
+    bottom: 5px;
     padding: 0.2rem 0.5rem;
-    border: 0.2px solid black;
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
     background-color: #8884d8;
     color: black;
     transition: all 200ms ease-in-out;
@@ -38,7 +38,6 @@
 .invisible {
   visibility: collapse;
   .toggle {
-    top: 230px;
     border: 0.1rem solid rgba(0, 0, 0, 0.2);
     background-color: #fff;
     color: black;
