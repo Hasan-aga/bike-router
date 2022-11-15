@@ -14,19 +14,20 @@ body {
   height: calc(var(--vh, 1vh) * 100);
 }
 
-#root {
-  height: 100%;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root {
+  height: 100%;
 }
 
 .App {
   background-color: #282c34;
   color: #f7f7f7;
   position: relative;
+  height: 100%;
 }
 
 .App-link {
