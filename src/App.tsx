@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./App.scss";
 import Dashboard from "./components/dashboard/dashboard.component";
 import Mapcontainer from "./components/mapcontainer/mapcontainer.component";
@@ -9,6 +10,19 @@ import { PointProvider } from "./contexts/point.context";
 import { SearchProvider } from "./contexts/search.context";
 
 function App() {
+  function setPageHeight() {
+    const { innerHeight } = window;
+    let root = document.documentElement;
+    const heightPx = `${innerHeight}px`;
+    console.log(heightPx);
+
+    root.style.setProperty("--doc-height", heightPx);
+  }
+
+  useEffect(() => {
+    setPageHeight();
+  }, []);
+
   return (
     <div className="App">
       <SearchProvider>
