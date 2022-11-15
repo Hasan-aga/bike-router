@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./App.scss";
 import Dashboard from "./components/dashboard/dashboard.component";
 import Mapcontainer from "./components/mapcontainer/mapcontainer.component";
