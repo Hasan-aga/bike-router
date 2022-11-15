@@ -1,9 +1,13 @@
 .mapcontainer {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   position: relative;
 }
 
 .search-wrapper {
   display: flex;
+}
+
+.leaflet-container {
+  font-family: "Work Sans";
 }

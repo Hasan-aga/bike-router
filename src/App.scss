@@ -3,46 +3,13 @@
   margin: 0;
   box-sizing: border-box;
 }
-body {
-  box-sizing: border-box;
-  margin: 0;
-  font-family: "Work Sans", "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  // for some reason, using window innerheight causes problem in mobile
-  height: 100vh;
-}
-
-:root {
-  --doc-height: 100hv;
-}
-
-#root {
-  height: 100%;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
 .App {
   background-color: #282c34;
   color: #f7f7f7;
   position: relative;
-  height: 100%;
 }
 
 .App-link {
   color: #61dafb;
-}
-
-@media (max-width: 40em) {
-  .elevation-chart {
-    .custom-tooltip {
-      visibility: collapse;
-    }
-  }
 }
