@@ -11,8 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  // for some reason, using window innerheight causes problem in mobile
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 :root {
