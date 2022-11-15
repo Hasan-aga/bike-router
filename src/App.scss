@@ -38,11 +38,3 @@ code {
 .App-link {
   color: #61dafb;
 }
-
-@media (max-width: 40em) {
-  .elevation-chart {
-    .custom-tooltip {
-      visibility: collapse;
-    }
-  }
-}
