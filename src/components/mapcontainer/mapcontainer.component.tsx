@@ -50,6 +50,7 @@ const Mapcontainer = () => {
       className="mapcontainer"
       center={coords as LatLngExpression}
       zoom={13}
+      zoomControl={false}
       scrollWheelZoom={true}
     >
       <TileLayer
