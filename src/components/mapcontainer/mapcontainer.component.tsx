@@ -14,10 +14,9 @@ import {
   TfiSearch,
   TfiAngleDoubleLeft,
 } from "react-icons/tfi";
-import { GoEyeClosed, GoEye } from "react-icons/go";
 import Stack from "../stack/stack.component";
 import Search from "../search/search.component";
-import { ToggleChart } from "../../contexts/toggleChart.context";
+import DetachedButton from "../mapButton/detachedButton.component";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -25,7 +24,6 @@ const Mapcontainer = () => {
   const { setPoints } = useContext(pointContext);
   const [searchIsVisible, setSearchIsVisible] = useState<boolean>(false);
   const searchbarRef = useRef(null);
-  const [dashState, toggleDash] = useContext(ToggleChart);
 
   useEffect(() => {
     const getCoords = async (location: string) => {
@@ -84,16 +82,7 @@ const Mapcontainer = () => {
           <MapButton onClickCallback={removeMarkers} title="Remove all markers">
             <TfiTrash />
           </MapButton>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleDash();
-            }}
-            className="map-button"
-            title={`${dashState ? "Hide chart" : "Show chart"}`}
-          >
-            {dashState ? <GoEye /> : <GoEyeClosed />}
-          </button>
+          <DetachedButton />
         </Stack>
       </Control>
     </MapContainer>
