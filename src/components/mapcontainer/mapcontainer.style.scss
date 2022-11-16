@@ -15,3 +15,7 @@
     }
   }
 }
+
+.leaflet-tile {
+  -webkit-filter: hue-rotate(160deg) invert(80%);
+}
