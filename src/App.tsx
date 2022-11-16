@@ -8,12 +8,7 @@ import { PathProvider } from "./contexts/path.context";
 import { PointProvider } from "./contexts/point.context";
 import { SearchProvider } from "./contexts/search.context";
 
-import useVH from "react-viewport-height";
-
 function App() {
-  const vh = useVH();
-  console.log(vh);
-
   return (
     <div className="App">
       <SearchProvider>
