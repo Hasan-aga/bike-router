@@ -17,7 +17,7 @@ import {
 import { GoEyeClosed, GoEye } from "react-icons/go";
 import Stack from "../stack/stack.component";
 import Search from "../search/search.component";
-import useToggleDash from "../../hooks/useToggleDash.hook";
+import { ToggleChart } from "../../contexts/toggleChart.context";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -25,7 +25,7 @@ const Mapcontainer = () => {
   const { setPoints } = useContext(pointContext);
   const [searchIsVisible, setSearchIsVisible] = useState<boolean>(false);
   const searchbarRef = useRef(null);
-  const [dashState, toggleDash] = useToggleDash(true);
+  const [dashState, toggleDash] = useContext(ToggleChart);
 
   useEffect(() => {
     const getCoords = async (location: string) => {

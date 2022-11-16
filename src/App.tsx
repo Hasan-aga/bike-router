@@ -7,6 +7,7 @@ import { PathProvider } from "./contexts/path.context";
 
 import { PointProvider } from "./contexts/point.context";
 import { SearchProvider } from "./contexts/search.context";
+import { ToggleChartProvider } from "./contexts/toggleChart.context";
 
 function App() {
   return (
@@ -16,8 +17,10 @@ function App() {
           <PathProvider>
             <ChartPointProvider>
               <InclinationProvider>
-                <Mapcontainer />
-                <Dashboard />
+                <ToggleChartProvider>
+                  <Mapcontainer />
+                  <Dashboard />
+                </ToggleChartProvider>
               </InclinationProvider>
             </ChartPointProvider>
           </PathProvider>
