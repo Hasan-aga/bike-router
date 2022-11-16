@@ -4,7 +4,7 @@ import { pathContext } from "../../contexts/path.context";
 import { ToggleChart } from "../../contexts/toggleChart.context";
 
 // this button does not interact with the Map
-const DetachedButton = () => {
+const ToggleChartButton = () => {
   const [dashState, toggleDash] = useContext(ToggleChart);
   const { path } = useContext(pathContext);
   if (!path) return <></>;
@@ -22,4 +22,4 @@ const DetachedButton = () => {
   );
 };
 
-export default DetachedButton;
+export default ToggleChartButton;

@@ -1,4 +1,4 @@
-import "./mapcontainer.style.scss";
+import "./mapcontainer.style.tsx";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { useContext, useEffect, useRef, useState } from "react";
 import { searchContext } from "../../contexts/search.context";
@@ -16,7 +16,8 @@ import {
 } from "react-icons/tfi";
 import Stack from "../stack/stack.component";
 import Search from "../search/search.component";
-import DetachedButton from "../mapButton/detachedButton.component";
+import ToggleChartButton from "../mapButton/toggleChartButton.component";
+import { CustomMap } from "./mapcontainer.style";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -47,45 +48,51 @@ const Mapcontainer = () => {
   };
 
   return (
-    <MapContainer
-      className="mapcontainer"
-      center={coords as LatLngExpression}
-      zoom={13}
-      zoomControl={false}
-      scrollWheelZoom={true}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-
-      <UpdatedMap coords={coords} />
-      <Control prepend position="topleft">
-        <Stack>
-          <Stack direction="horizontal">
-            <MapButton
-              onClickCallback={toggleSearchbar}
-              title="Search location"
-            >
-              {searchIsVisible ? <TfiAngleDoubleLeft /> : <TfiSearch />}
+    <CustomMap theme="dark">
+      <MapContainer
+        className="mapcontainer"
+        center={coords as LatLngExpression}
+        zoom={13}
+        zoomControl={false}
+        scrollWheelZoom={true}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <UpdatedMap coords={coords} />
+        <Control prepend position="topleft">
+          <Stack>
+            <Stack direction="horizontal">
+              <MapButton
+                onClickCallback={toggleSearchbar}
+                title="Search location"
+              >
+                {searchIsVisible ? <TfiAngleDoubleLeft /> : <TfiSearch />}
+              </MapButton>
+              <div className="search-wrapper" ref={searchbarRef}>
+                {searchIsVisible && (
+                  <Search
+                    placeholder="search location"
+                    SearchIcon={TfiSearch}
+                  />
+                )}
+              </div>
+            </Stack>
+            <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
+              <TfiArrowsCorner />
             </MapButton>
-
-            <div className="search-wrapper" ref={searchbarRef}>
-              {searchIsVisible && (
-                <Search placeholder="search location" SearchIcon={TfiSearch} />
-              )}
-            </div>
+            <MapButton
+              onClickCallback={removeMarkers}
+              title="Remove all markers"
+            >
+              <TfiTrash />
+            </MapButton>
+            <ToggleChartButton />
           </Stack>
-          <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
-            <TfiArrowsCorner />
-          </MapButton>
-          <MapButton onClickCallback={removeMarkers} title="Remove all markers">
-            <TfiTrash />
-          </MapButton>
-          <DetachedButton />
-        </Stack>
-      </Control>
-    </MapContainer>
+        </Control>
+      </MapContainer>
+    </CustomMap>
   );
 };
 

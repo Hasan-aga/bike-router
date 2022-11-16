@@ -1,7 +1,6 @@
 .map-button {
-  background-color: #282c34;
-  border: 0.1rem solid rgba(234, 221, 255, 0.2);
-  border-radius: 5px;
+  background-color: white;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
   padding: 0.3rem;
   padding-bottom: 2px;
   height: auto;
@@ -9,14 +8,10 @@
 
   &:hover {
     cursor: pointer;
-    background-color: #1f1f1f;
-    svg {
-      color: #82ca9d;
-    }
+    background-color: #f7f7f7;
   }
 
   svg {
-    color: #8884d8;
     width: 1.5rem;
     height: 1.5rem;
   }
