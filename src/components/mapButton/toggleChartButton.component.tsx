@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GoEyeClosed, GoEye } from "react-icons/go";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 import { pathContext } from "../../contexts/path.context";
 import { ToggleChart } from "../../contexts/toggleChart.context";
 
@@ -17,7 +17,7 @@ const ToggleChartButton = () => {
       className="map-button"
       title={`${dashState ? "Hide chart" : "Show chart"}`}
     >
-      {dashState ? <GoEye /> : <GoEyeClosed />}
+      {dashState ? <FiEyeOff /> : <FiEye />}
     </button>
   );
 };
