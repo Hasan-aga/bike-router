@@ -28,6 +28,10 @@ code {
     monospace;
 }
 
+#root {
+  height: 100%;
+}
+
 .App {
   background-color: #282c34;
   color: #f7f7f7;
@@ -37,4 +41,12 @@ code {
 
 .App-link {
   color: #61dafb;
+}
+
+@media (max-width: 40em) {
+  .elevation-chart {
+    .custom-tooltip {
+      visibility: collapse;
+    }
+  }
 }
