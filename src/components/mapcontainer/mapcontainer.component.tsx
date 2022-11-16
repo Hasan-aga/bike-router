@@ -8,16 +8,13 @@ import UpdatedMap from "./updatedMap";
 import { pointContext } from "../../contexts/point.context";
 import Control from "react-leaflet-custom-control";
 import MapButton from "../mapButton/mapButton.component";
-import {
-  TfiArrowsCorner,
-  TfiTrash,
-  TfiSearch,
-  TfiAngleDoubleLeft,
-} from "react-icons/tfi";
+import { FiMaximize2, FiTrash2, FiSearch, FiArrowLeft } from "react-icons/fi";
 import Stack from "../stack/stack.component";
 import Search from "../search/search.component";
 import ToggleChartButton from "../mapButton/toggleChartButton.component";
 import { CustomMap } from "./mapcontainer.style";
+import useToggle from "../../hooks/useToggle.hook";
+import ToggleThemeButton from "../mapButton/toggleThemeButton.component";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -25,6 +22,7 @@ const Mapcontainer = () => {
   const { setPoints } = useContext(pointContext);
   const [searchIsVisible, setSearchIsVisible] = useState<boolean>(false);
   const searchbarRef = useRef(null);
+  const [darkTheme, toggleDarkTheme] = useToggle(true);
 
   useEffect(() => {
     const getCoords = async (location: string) => {
@@ -48,7 +46,7 @@ const Mapcontainer = () => {
   };
 
   return (
-    <CustomMap theme="dark">
+    <CustomMap darkTheme={darkTheme}>
       <MapContainer
         className="mapcontainer"
         center={coords as LatLngExpression}
@@ -63,30 +61,31 @@ const Mapcontainer = () => {
         <UpdatedMap coords={coords} />
         <Control prepend position="topleft">
           <Stack>
+            <ToggleThemeButton
+              toggleDarkTheme={toggleDarkTheme}
+              darkTheme={darkTheme}
+            />
             <Stack direction="horizontal">
               <MapButton
                 onClickCallback={toggleSearchbar}
                 title="Search location"
               >
-                {searchIsVisible ? <TfiAngleDoubleLeft /> : <TfiSearch />}
+                {searchIsVisible ? <FiArrowLeft /> : <FiSearch />}
               </MapButton>
               <div className="search-wrapper" ref={searchbarRef}>
                 {searchIsVisible && (
-                  <Search
-                    placeholder="search location"
-                    SearchIcon={TfiSearch}
-                  />
+                  <Search placeholder="search location" SearchIcon={FiSearch} />
                 )}
               </div>
             </Stack>
             <MapButton onClickCallback={resetZoomLevel} title="Reset zoom">
-              <TfiArrowsCorner />
+              <FiMaximize2 />
             </MapButton>
             <MapButton
               onClickCallback={removeMarkers}
               title="Remove all markers"
             >
-              <TfiTrash />
+              <FiTrash2 />
             </MapButton>
             <ToggleChartButton />
           </Stack>
