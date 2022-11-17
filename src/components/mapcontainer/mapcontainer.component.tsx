@@ -51,7 +51,7 @@ const Mapcontainer = () => {
     setPoints([]);
   };
 
-  const getCurrentLocation = () => {
+  const getCurrentLocation = (mapRef: Map) => {
     console.log("getting current location...");
 
     navigator.geolocation.getCurrentPosition(
@@ -61,6 +61,7 @@ const Mapcontainer = () => {
           coords: { latitude, longitude },
         } = position;
         console.log(latitude, longitude);
+        mapRef.setView({ lat: latitude, lng: longitude });
       },
       function () {
         // case failure
