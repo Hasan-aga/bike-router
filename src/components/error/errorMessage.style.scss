@@ -1,0 +1,18 @@
+.error {
+  padding: 1em 2em;
+  z-index: 1000;
+  background-color: #f4a261;
+  border: solid 5px #e76f51;
+  border-radius: 10px;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  p {
+    color: #333;
+    font-weight: 600;
+    background-color: #e76f5146;
+    padding: 5px;
+    border-radius: 10px;
+  }
+}

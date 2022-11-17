@@ -21,7 +21,7 @@ import ToggleChartButton from "../mapButton/toggleChartButton.component";
 import { CustomMap } from "./mapcontainer.style";
 import useToggle from "../../hooks/useToggle.hook";
 import ToggleThemeButton from "../mapButton/toggleThemeButton.component";
-import ErrorMessage from "../error/error.component";
+import { showErrorContext } from "../../contexts/showError.context";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -30,6 +30,7 @@ const Mapcontainer = () => {
   const [searchIsVisible, setSearchIsVisible] = useState<boolean>(false);
   const searchbarRef = useRef(null);
   const [darkTheme, toggleDarkTheme] = useToggle(true);
+  const { errorMessage, setErrorMessage } = useContext(showErrorContext);
 
   useEffect(() => {
     const getCoords = async (location: string) => {
@@ -66,8 +67,7 @@ const Mapcontainer = () => {
       },
       function () {
         // case failure
-        console.log("Could not get position.");
-        return <ErrorMessage message="Could not get position!" />;
+        !errorMessage && setErrorMessage("Could not get position!");
       }
     );
   };
