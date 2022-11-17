@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import "./App.scss";
 import Dashboard from "./components/dashboard/dashboard.component";
 import ErrorMessage from "./components/error/errorMessage.component";
