@@ -8,7 +8,13 @@ import UpdatedMap from "./updatedMap";
 import { pointContext } from "../../contexts/point.context";
 import Control from "react-leaflet-custom-control";
 import MapButton from "../mapButton/mapButton.component";
-import { FiMaximize2, FiTrash2, FiSearch, FiArrowLeft } from "react-icons/fi";
+import {
+  FiMaximize2,
+  FiTrash2,
+  FiSearch,
+  FiArrowLeft,
+  FiMapPin,
+} from "react-icons/fi";
 import Stack from "../stack/stack.component";
 import Search from "../search/search.component";
 import ToggleChartButton from "../mapButton/toggleChartButton.component";
@@ -45,6 +51,24 @@ const Mapcontainer = () => {
     setPoints([]);
   };
 
+  const getCurrentLocation = () => {
+    console.log("getting current location...");
+
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        // case success
+        const {
+          coords: { latitude, longitude },
+        } = position;
+        console.log(latitude, longitude);
+      },
+      function () {
+        // case failure
+        console.log("Could not get position.");
+      }
+    );
+  };
+
   return (
     <CustomMap darkTheme={darkTheme}>
       <MapContainer
@@ -65,6 +89,9 @@ const Mapcontainer = () => {
               toggleDarkTheme={toggleDarkTheme}
               darkTheme={darkTheme}
             />
+            <MapButton onClickCallback={getCurrentLocation} title="Locate">
+              <FiMapPin />
+            </MapButton>
             <Stack direction="horizontal">
               <MapButton
                 onClickCallback={toggleSearchbar}
