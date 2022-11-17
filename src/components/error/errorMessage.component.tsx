@@ -1,13 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { showErrorContext } from "../../contexts/showError.context";
 import "./errorMessage.style.scss";
 const ErrorMessage = () => {
   const { errorMessage, setErrorMessage } = useContext(showErrorContext);
-  let timer;
-  if (timer) clearTimeout(timer);
-  timer = setTimeout(() => {
-    setErrorMessage("");
-  }, 3000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setErrorMessage("");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  });
   return (
     <>
       {errorMessage && (
