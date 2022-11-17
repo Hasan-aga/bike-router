@@ -1,0 +1,13 @@
+.error {
+  background-color: #f4a261;
+  border: solid 2px #e76f51;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  p {
+    color: #333;
+    font-weight: 600;
+    background-color: #e76f51;
+  }
+}

@@ -21,6 +21,7 @@ import ToggleChartButton from "../mapButton/toggleChartButton.component";
 import { CustomMap } from "./mapcontainer.style";
 import useToggle from "../../hooks/useToggle.hook";
 import ToggleThemeButton from "../mapButton/toggleThemeButton.component";
+import ErrorMessage from "../error/error.component";
 
 const Mapcontainer = () => {
   const { searchValue } = useContext(searchContext);
@@ -66,6 +67,7 @@ const Mapcontainer = () => {
       function () {
         // case failure
         console.log("Could not get position.");
+        return <ErrorMessage message="Could not get position!" />;
       }
     );
   };
