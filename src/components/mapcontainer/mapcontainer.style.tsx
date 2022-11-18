@@ -31,7 +31,6 @@ export const CustomMap = styled.div<{ darkTheme: boolean }>`
       .map-button {
         background-color: #282c34;
         color: #8884d8;
-        margin-bottom: 1px;
         &:hover {
           cursor: pointer;
           background-color: #1f1f1f;
@@ -40,6 +39,35 @@ export const CustomMap = styled.div<{ darkTheme: boolean }>`
           }
         }
       }
+
+      .searchInput {
+        background-color:#282c34;
+        color: #8884d8;
+        &:focus {
+        outline: #8884d8 2px solid;
+        }
+      }
+
+      .search-group{
+        button{
+          background-color:#282c34;
+          &:hover {
+            cursor: pointer;
+            background-color: #1f1f1f;
+
+          }
+          &:hover svg {
+            color: #82ca9d;
+          }
+        }
+
+        svg{
+          color: #8884d8;
+        }
+
+
+      }
+
       `
     );
   }}
