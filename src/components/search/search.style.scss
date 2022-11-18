@@ -3,30 +3,36 @@
   border: none;
   font-size: 1rem;
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  &:focus {
+    outline: black 2px solid;
+  }
 }
 
 .search-group {
+  margin-left: 5px;
   height: 100%;
   display: flex;
+  gap: 2px;
   align-items: stretch;
   button {
     border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
     background-color: white;
     width: fit-content;
     &:hover {
       cursor: pointer;
-      background-color: #8884d8;
     }
 
     &:hover svg {
-      color: #f7f7f7;
+      color: black;
     }
   }
   svg {
     height: 100%;
     width: auto;
     padding: 0.5rem;
-    color: #8884d8;
+    color: black;
   }
 }
 
