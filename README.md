@@ -1,7 +1,7 @@
 # Bike Router
 
 ![tests workflow](https://github.com/hasan-aga/bike-router/actions/workflows/test.yml/badge.svg)
-[![End-to-end tests](https://github.com/Hasan-aga/bike-router/actions/workflows/e2eTests.yml/badge.svg?branch=master)](https://github.com/Hasan-aga/bike-router/actions/workflows/e2eTests.yml)
+
 
 Live demo: [biker.hasan.one](https://biker.hasan.one/)
 
