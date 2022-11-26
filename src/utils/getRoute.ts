@@ -8,8 +8,7 @@ export const getRoute = async (points: LatLngLiteral[]) => {
     })
     .join("|");
 
-  const url = `https://api.geoapify.com/v1/routing?waypoints=${waypoints}&mode=bicycle&details=elevation&apiKey=${process.env.REACT_APP_API_KEY}
-  `;
+  const url = `https://us-central1-neat-episode-365710.cloudfunctions.net/attachAPIkey?url=https://api.geoapify.com/v1/routing?waypoints=${waypoints}&mode=bicycle&details=elevation`;
   try {
     const response = await fetch(url);
 
