@@ -11,6 +11,10 @@ export const getRoute = async (points: LatLngLiteral[]) => {
   const url = `https://us-central1-neat-episode-365710.cloudfunctions.net/attachAPIkey`;
   try {
     const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         url: `https://api.geoapify.com/v1/routing?waypoints=${waypoints}&mode=bicycle&details=elevation`,
       }),
