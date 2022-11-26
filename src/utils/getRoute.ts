@@ -8,10 +8,11 @@ export const getRoute = async (points: LatLngLiteral[]) => {
     })
     .join("|");
 
-  const url = `https://us-central1-neat-episode-365710.cloudfunctions.net/attachAPIkey`;
+  const serverlessUrl = `https://us-central1-neat-episode-365710.cloudfunctions.net/attachAPIkey`;
   try {
-    const response = await fetch(url, {
+    const response = await fetch(serverlessUrl, {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
