@@ -74,10 +74,10 @@ export interface RootObject {
 export const getJsonFromFetch = async function (
   name: string
 ): Promise<RootObject> {
-  const url = `https://api.geoapify.com/v1/geocode/search?text=${name}&format=json&apiKey=${process.env.REACT_APP_API_KEY}`;
+  const url = `https://europe-central2-neat-episode-365710.cloudfunctions.net/getCoordsFromName?name=${name}`;
+
   try {
     const response = await fetch(url);
-
     return await response.json();
   } catch (e) {
     throw e;

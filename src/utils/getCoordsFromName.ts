@@ -8,7 +8,6 @@ export const getCoordsFromName = async function (countryName: string) {
     return latlng;
   } catch (e) {
     if (e instanceof Error) {
-      console.error(e);
       throw new Error(
         `failed to get location for ${countryName}, ${e.message}`
       );
