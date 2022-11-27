@@ -1,7 +1,6 @@
 import { LatLngLiteral } from "leaflet";
 import { getJsonFromFetch } from "./getJsonFromFetch";
 import { Route } from "./routeTypes";
-var axios = require("axios").default;
 
 export const getRoute = async (points: LatLngLiteral[]) => {
   const waypoints = points
