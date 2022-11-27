@@ -9,7 +9,7 @@ const handler = async (req, res) => {
   if (!url) {
     return {
       statusCode: "400",
-      body: "make sure to add URL with the request's body",
+      body: "make sure to add URL with the request's body.",
     };
   }
   const urlWithKey = `${url}&apiKey=${API_KEY}`;
