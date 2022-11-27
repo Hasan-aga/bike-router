@@ -74,7 +74,7 @@ export interface RootObject {
 export const getJsonFromFetch = async function (
   apiUrl: string
 ): Promise<RootObject> {
-  const serverlessUrl = `/.netlify/functions/attachAPIkey`;
+  const serverlessUrl = `https://us-central1-neat-episode-365710.cloudfunctions.net/attachAPIkey/.netlify/functions/attachAPIkey`;
   const data = JSON.stringify({
     url: apiUrl,
   });
