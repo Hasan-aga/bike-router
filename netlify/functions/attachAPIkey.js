@@ -24,7 +24,7 @@ const handler = async (event, context, callback) => {
     const response = await axios(config);
     const result = response.data;
     return {
-      statusCode: "200",
+      statusCode: 200,
       headers: {
         "Content-Type": "application/json",
       },
@@ -32,7 +32,7 @@ const handler = async (event, context, callback) => {
     };
   } catch (e) {
     return {
-      statusCode: "500",
+      statusCode: 500,
       body: `could not make call! ${e.message}`,
     };
   }
