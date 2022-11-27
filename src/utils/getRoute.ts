@@ -1,6 +1,7 @@
 import { LatLngLiteral } from "leaflet";
+import { getJsonFromFetch } from "./getJsonFromFetch";
 import { Route } from "./routeTypes";
-var axios = require("axios");
+var axios = require("axios").default;
 
 export const getRoute = async (points: LatLngLiteral[]) => {
   const waypoints = points
@@ -9,27 +10,11 @@ export const getRoute = async (points: LatLngLiteral[]) => {
     })
     .join("|");
 
-  const data = JSON.stringify({
-    url: `https://api.geoapify.com/v1/routing?waypoints=${waypoints}&mode=bicycle&details=elevation`,
-  });
-
-  const serverlessUrl = `https://us-central1-neat-episode-365710.cloudfunctions.net/attachAPIkey`;
-
-  const config = {
-    method: "post",
-    url: serverlessUrl,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: data,
-  };
+  const url = `https://api.geoapify.com/v1/routing?waypoints=${waypoints}&mode=bicycle&details=elevation`;
 
   try {
-    const response = await axios(config);
-
-    const result: Route = await response.json();
-    console.log(result);
-
+    const response = await getJsonFromFetch(url);
+    const result = response as any as Route;
     return result;
   } catch (e) {
     throw e;

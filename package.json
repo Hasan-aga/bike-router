@@ -34,7 +34,8 @@
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\"",
     "cy": "cypress run --spec cypress/e2e/spec.cy.ts",
     "e2e": "BROWSER=none start-server-and-test start http://localhost:3000 cy",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serverless": "nodemon ./server/server.js"
   },
   "proxy": "https://europe-central2-neat-episode-365710.cloudfunctions.net/",
   "eslintConfig": {
@@ -60,6 +61,8 @@
     "@types/leaflet": "^1.9.0",
     "@types/react-transition-group": "^4.4.5",
     "cypress": "^10.11.0",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
     "start-server-and-test": "^1.14.0"
   }
 }
