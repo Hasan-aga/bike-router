@@ -23,13 +23,13 @@ const handler = async (event, context, callback) => {
   try {
     const response = await axios(config);
     const result = response.data;
-    callback(null, {
+    return {
       statusCode: "200",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(result),
-    });
+    };
   } catch (e) {
     return {
       statusCode: "500",
