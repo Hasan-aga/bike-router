@@ -1,11 +1,11 @@
 const { default: axios } = require("axios");
 require("dotenv").config();
 
-const handler = async (req, res) => {
+const handler = async (event, context, callback) => {
   const API_KEY = process.env.REACT_APP_API_KEY;
   console.log("API_KEY", API_KEY);
-  const { url } = JSON.parse(req.body);
-  console.log("req.body= ", JSON.parse(req.body));
+  const { url } = JSON.parse(event.body);
+  console.log("req.body= ", JSON.parse(event.body));
   if (!url) {
     return {
       statusCode: "400",
@@ -25,9 +25,6 @@ const handler = async (req, res) => {
     const result = response.data;
     return {
       statusCode: "200",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(result),
     };
   } catch (e) {
