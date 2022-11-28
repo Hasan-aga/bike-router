@@ -72,11 +72,20 @@ export interface RootObject {
 }
 
 export const getJsonFromFetch = async function (
-  name: string
+  apiUrl: string
 ): Promise<RootObject> {
-  const url = `https://api.geoapify.com/v1/geocode/search?text=${name}&format=json&apiKey=${process.env.REACT_APP_API_KEY}`;
+  const serverlessUrl = `/.netlify/functions/attachAPIkey`;
+  const data = JSON.stringify({
+    url: apiUrl,
+  });
   try {
-    const response = await fetch(url);
+    const response = await fetch(serverlessUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: data,
+    });
 
     return await response.json();
   } catch (e) {

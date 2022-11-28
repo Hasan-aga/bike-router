@@ -1,4 +1,5 @@
 import { LatLngLiteral } from "leaflet";
+import { getJsonFromFetch } from "./getJsonFromFetch";
 import { Route } from "./routeTypes";
 
 export const getRoute = async (points: LatLngLiteral[]) => {
@@ -8,14 +9,11 @@ export const getRoute = async (points: LatLngLiteral[]) => {
     })
     .join("|");
 
-  const url = `https://api.geoapify.com/v1/routing?waypoints=${waypoints}&mode=bicycle&details=elevation&apiKey=${process.env.REACT_APP_API_KEY}
-  `;
+  const url = `https://api.geoapify.com/v1/routing?waypoints=${waypoints}&mode=bicycle&details=elevation`;
+
   try {
-    const response = await fetch(url);
-
-    const result: Route = await response.json();
-    console.log(result);
-
+    const response = await getJsonFromFetch(url);
+    const result = response as any as Route;
     return result;
   } catch (e) {
     throw e;

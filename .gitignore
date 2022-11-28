@@ -24,3 +24,6 @@ yarn-error.log*
 .env
 .vscode/launch.json
 *.mp4
+
+# Local Netlify folder
+.netlify
