@@ -10,6 +10,18 @@ import { PointProvider } from "./contexts/point.context";
 import { SearchProvider } from "./contexts/search.context";
 import { ToggleChartProvider } from "./contexts/toggleChart.context";
 import { ShowErrorProvider } from "./contexts/showError.context";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Policy from "./components/about/policy.component";
+
+function Home() {
+  return (
+    <>
+      <Mapcontainer />
+      <Dashboard />
+      <ErrorMessage />
+    </>
+  );
+}
 
 function App() {
   return (
@@ -21,9 +33,12 @@ function App() {
               <InclinationProvider>
                 <ToggleChartProvider>
                   <ShowErrorProvider>
-                    <Mapcontainer />
-                    <Dashboard />
-                    <ErrorMessage />
+                    <BrowserRouter>
+                      <Routes>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/policy" element={<Policy />}></Route>
+                      </Routes>
+                    </BrowserRouter>
                   </ShowErrorProvider>
                 </ToggleChartProvider>
               </InclinationProvider>
