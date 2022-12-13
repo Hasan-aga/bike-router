@@ -12,6 +12,7 @@ import { ToggleChartProvider } from "./contexts/toggleChart.context";
 import { ShowErrorProvider } from "./contexts/showError.context";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Policy from "./components/about/policy.component";
+import About from "./components/about/about.component";
 
 function Home() {
   return (
@@ -37,6 +38,7 @@ function App() {
                       <Routes>
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/policy" element={<Policy />}></Route>
+                        <Route path="*" element={<About />}></Route>
                       </Routes>
                     </BrowserRouter>
                   </ShowErrorProvider>
