@@ -29,6 +29,9 @@ export const CustomMap = styled.div<{ darkTheme: boolean }>`
       }
 
       .map-button {
+        a{
+          color: #8884d8;
+        }
         background-color: #282c34;
         color: #8884d8;
         &:hover {
@@ -49,8 +52,10 @@ export const CustomMap = styled.div<{ darkTheme: boolean }>`
       }
 
       .search-group{
+        
         button{
           background-color:#282c34;
+          
           &:hover {
             cursor: pointer;
             background-color: #1f1f1f;
@@ -65,6 +70,7 @@ export const CustomMap = styled.div<{ darkTheme: boolean }>`
           color: #8884d8;
         }
 
+        
 
       }
 

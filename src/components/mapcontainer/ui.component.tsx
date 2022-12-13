@@ -6,6 +6,7 @@ import {
   FiSearch,
   FiMaximize2,
   FiTrash2,
+  FiHeart,
 } from "react-icons/fi";
 import MapButton from "../mapButton/mapButton.component";
 import ToggleChartButton from "../mapButton/toggleChartButton.component";
@@ -58,6 +59,11 @@ const UI = ({
       </MapButton>
       <MapButton onClickCallback={removeMarkers} title="Remove all markers">
         <FiTrash2 />
+      </MapButton>
+      <MapButton onClickCallback={() => ""} title="About">
+        <a href="/about">
+          <FiHeart />
+        </a>
       </MapButton>
       <ToggleChartButton />
     </Stack>
